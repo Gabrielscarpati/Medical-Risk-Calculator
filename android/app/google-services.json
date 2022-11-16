@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012776008644",
+    "project_id": "medicalriskcalculator",
+    "storage_bucket": "medicalriskcalculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012776008644:android:bdf8e7eb0def2d38fa4291",
+        "android_client_info": {
+          "package_name": "com.example.medical_risk_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012776008644-ki23sso0be8m49e02t724jc946riiqor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtlZRWjXqy5Yk00kuccS1LalLIQ7IiGyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012776008644-ki23sso0be8m49e02t724jc946riiqor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
