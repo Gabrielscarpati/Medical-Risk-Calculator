@@ -6,6 +6,8 @@ import '../components/buttonWithMarginScreenCollectUserData.dart';
 import '../components/greenTextScreenCollectUserData.dart';
 import 'package:provider/provider.dart';
 
+import '../components/widgetsCollectUserData.dart';
+
 
 class BasicBiodata extends StatefulWidget {
   const BasicBiodata({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class _BasicBiodata extends State<BasicBiodata> {
       color: Colors.white,
       height: 250,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.only(right: 12.0, left: 12.0, top: 4,),
         child: Container(
           child: Column(
 
@@ -74,25 +76,37 @@ class _BasicBiodata extends State<BasicBiodata> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GreenTextScreenCollectUserData(text: 'Hip Size',),
-                          SizedBox(width: screenWidth*.05,),
-                          Text("Values in centimeters"),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GreenTextScreenCollectUserData(text: 'Hip Size',),
-                          SizedBox(width: screenWidth*.05,),
-                          Text("Values in centimeters"),
-                        ],
-                      ),
-                    ],
+                  Container(
+                    color: Colors.yellow[200],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(width:80 ,),//30
+                            GreenTextScreenCollectUserData(text: "Height",),
+                            HeightController(
+                              nameController: _Provider.heightController,
+                              hint: 'In centimeters',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(width:80 ,),//30
+                            GreenTextScreenCollectUserData(text: 'Weight',),
+
+                            WeightController(
+                              nameController: _Provider.weightController,
+                              hint: 'In centimeters',
+
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
 
                 ],),

@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
 
-      body: SignUpScreen(),
+      body: ViewCollectUserData(),
     );
   }
 }

@@ -3,7 +3,9 @@ import 'package:health_status/presenter/screeens/collectUserData/viewCollectUser
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import '../../../../domain/Models/bodyType.dart';
 import '../../../../infra/services/firebase/firebaseManager.dart';
+import '../../../../infra/services/getInformationByBodyType.dart';
 import '../../../components/loadingButton.dart';
 import '../../LogIn/viewLogIn.dart';
 import 'widgetsForSignUp.dart';
@@ -73,18 +75,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 confirmPasswordController: provider.signUpPageConfirmPasswordController,
               ),
               SizedBox(height: heightBetweenFields*3 ,),
-              ElevatedButton(onPressed:() {
-                FirebaseManager().registerUser(
+              ElevatedButton(onPressed:() async{
+
+                BodyType info = await GetInformationByBodyType().betInformationByBodyType();
+                print(info.whatToDoExercise);
+
+                /*FirebaseManager().registerUser(
                     provider.signUpPageEmailController.text.trim(),
-                    provider.signUpPagePasswordController.text.trim());
+                    provider.signUpPagePasswordController.text.trim());*/
 
-                //provider.singUpUser(context,);
 
-                Navigator.push(
+               /* Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (_) => const ViewCollectUserData()),
-                );
+                );*/
                 contrrr.reset();
               },
                 child: Text("here")),

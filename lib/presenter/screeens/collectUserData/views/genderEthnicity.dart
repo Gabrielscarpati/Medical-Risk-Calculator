@@ -24,9 +24,10 @@ class _GenderEthnicity extends State<GenderEthnicity> {
         double screenWidth = MediaQuery.of(context).size.width;
         double screenHeight = MediaQuery.of(context).size.height;
         return Container(
+          color: Colors.orangeAccent[100],
+         // width: 10,
           height: 160,
-          child: Center()
-          /*Padding(
+          child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Container(
               child: Column(
@@ -37,6 +38,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                     padding: const EdgeInsets.only(right: 8,left: 8),
                     child: DropdownButton<String>(
                       value: dropdownValue,
+                      isExpanded: true,
                       icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
                       style: const TextStyle(color: Colors.black),
@@ -60,6 +62,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8,left: 8),
                       child: DropdownButton<String>(
+                        isExpanded: true,
                         value: dropdownValue,
                         icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
@@ -83,7 +86,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
             ],
           ),
         ),
-      ),*/
+      ),
     );
   }
 }

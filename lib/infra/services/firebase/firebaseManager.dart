@@ -12,22 +12,8 @@ class FirebaseManager{
     return firebaseAuth.currentUser!.uid;
   }
 
-/*  Future<User?> signUpUser (String email, String password) async {
-    try {
-      await loginUser(email, password);
-      return userCredential.user;
-    } on FirebaseAuthException catch(e){
-      print(e);
-      //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message.toString()),backgroundColor: Colors.red));
-    } catch (e){
-      print(e);
-    }
-  }*/
-
-
   Future<User?> registerUser (String email, String password) async {
     try {
-      print("aaaaaaaa");
       UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       await loginUser(email, password);
       return userCredential.user;
@@ -38,11 +24,6 @@ class FirebaseManager{
       print(e);
     }
   }
-
-
-
-
-
 
   Future<User?> loginUser (String email, String password) async {
     try {

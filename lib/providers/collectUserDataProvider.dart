@@ -13,12 +13,40 @@ class CollectUserDataProvider with ChangeNotifier {
 
   CollectUserDataProvider._internal();
 
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
 
-   double currentSliderValueAge = 0;
+
+  double currentSliderValueAge = 0;
    double currentSliderValueChestCircumference = 0;
    double currentSliderValueWaistCircumference= 0;
    double currentSliderValueHipSize = 0;
+   double currentSliderValueChest =0;
+   double currentSliderValueWaist =0;
+   double currentSliderValueHip =0;
 
+  String calculateBodyType(){
+
+    if((currentSliderValueChest - currentSliderValueWaist >= 4 && currentSliderValueHip - currentSliderValueWaist >= 4)){
+      print("Hourglass");
+    }
+    else if (currentSliderValueHip - currentSliderValueChest >= 3 && currentSliderValueHip - currentSliderValueWaist < 9){
+      print("Pear");
+    }
+    else if (currentSliderValueChest - currentSliderValueHip >= 3 && currentSliderValueChest - currentSliderValueWaist < 9){
+      print("Inverted Triangle");
+    }
+    else if (currentSliderValueHip - currentSliderValueChest <= 4 && currentSliderValueWaist - currentSliderValueHip >= 3 && currentSliderValueWaist - currentSliderValueChest >= 3){
+      print("Spoon");
+    }
+    else if (currentSliderValueHip - currentSliderValueChest < 3 && currentSliderValueChest - currentSliderValueHip < 3 && currentSliderValueChest - currentSliderValueWaist < 9 && currentSliderValueHip - currentSliderValueWaist < 10){
+      print("Rectangle");
+    }
+    else{
+     // System.out.println("Error");
+    }
+    return " ";
+  }
 
   Future<RespostaProcessamento> loadListSnippets(BuildContext context) async{
     RespostaProcessamento respostaProcessamento = RespostaProcessamento.ok();
@@ -41,8 +69,10 @@ class CollectUserDataProvider with ChangeNotifier {
   notifyListeners();
 }
 
-/*
-import java.util.Scanner;
+
+
+
+/*import java.util.Scanner;
 class Main {
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
