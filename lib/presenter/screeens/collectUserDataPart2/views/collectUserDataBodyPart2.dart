@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
 import '../../../components/buttonInsideApp.dart';
-import '../../collectUserDataPart2/viewCollectUserDataPart2.dart';
-import 'ageMedicalConditions.dart';
-import 'genderEthnicity.dart';
-import 'imageBodyType.dart';
+import '../../collectUserData/views/ageMedicalConditions.dart';
+import '../../collectUserData/views/genderEthnicity.dart';
+import '../../collectUserData/views/imageBodyType.dart';
+import '../../medicalReportPart1/viewMedicalReportPart1.dart';
+import 'basicBiodata.dart';
 import 'package:provider/provider.dart';
 
-
-class CollectUserDataBody extends StatelessWidget {
-  const CollectUserDataBody({Key? key}) : super(key: key);
+class CollectUserDataBodyPart2 extends StatelessWidget {
+  const CollectUserDataBodyPart2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class CollectUserDataBody extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 12, top: 20),
+                  padding: EdgeInsets.only(left: 12, top: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -47,29 +47,14 @@ class CollectUserDataBody extends StatelessWidget {
                   ),
                 ),
                // Expanded(
-                  Container(
-                    child: Column(children: [
-                      Row(children: const [
-                        AgeMedicalConditions(),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Expanded(child: GenderEthnicity()),
-                      ],
-                      ),
-                    ],),
-                  ),
-                GenderEthnicity(),
-                Divider(height: 2, color: Colors.grey, thickness: 2,),
-                ImageBodyType(),
-                SizedBox(height: 8,),
+                BasicBiodata(),
                 ButtonInsideApp(
-                  buttonText: 'Continue',
+                  buttonText: 'Generate report',
                   goNextScreen: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ViewCollectUserDataPart2()),
+                          builder: (_) => const ViewMedicalReportPart1()),
                     );
                   },
                   controller: controller,)

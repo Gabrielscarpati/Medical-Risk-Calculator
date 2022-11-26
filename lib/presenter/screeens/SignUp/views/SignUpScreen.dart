@@ -80,16 +80,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 BodyType info = await GetInformationByBodyType().betInformationByBodyType();
                 print(info.whatToDoExercise);
 
-                /*FirebaseManager().registerUser(
+               /* FirebaseManager().registerUser(
                     provider.signUpPageEmailController.text.trim(),
                     provider.signUpPagePasswordController.text.trim());*/
 
-
-               /* Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (_) => const ViewCollectUserData()),
-                );*/
+                );
                 contrrr.reset();
               },
                 child: Text("here")),

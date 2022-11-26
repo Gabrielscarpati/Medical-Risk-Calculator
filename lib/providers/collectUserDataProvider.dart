@@ -10,20 +10,55 @@ class CollectUserDataProvider with ChangeNotifier {
   factory CollectUserDataProvider() {
     return provider;
   }
-
   CollectUserDataProvider._internal();
 
-  final heightController = TextEditingController();
+/*  final heightController = TextEditingController();
   final weightController = TextEditingController();
-
+  final TextEditingController ageController = TextEditingController();
+  final chestCircumferenceController = TextEditingController();
+  final waistCircumferenceController = TextEditingController();
+  final hipSize = TextEditingController();*/
 
   double currentSliderValueAge = 0;
-   double currentSliderValueChestCircumference = 0;
-   double currentSliderValueWaistCircumference= 0;
-   double currentSliderValueHipSize = 0;
-   double currentSliderValueChest =0;
-   double currentSliderValueWaist =0;
-   double currentSliderValueHip =0;
+  double currentSliderValueChest = 0;
+  double currentSliderValueWaist = 0;
+  double currentSliderValueHip = 0;
+  double currentSliderValueWeight = 0;
+  double currentSliderValueHeight = 0;
+
+   List<String> listGender = ['Gender', 'Female','Male','Transgender'];
+   List<String> listEthnicity = ['Ethnicity', 'American Indian or Alaska Native','Asian',' Black or African American','Native Hawaiian or Other Pacific Islander','Hispanic or Latino'];
+
+
+  void getAgeValue({required double ageValue}){
+    print(ageValue);
+    currentSliderValueAge = ageValue;
+    notifyListeners();
+  }
+
+  void getChestValue({required double chestValue}){
+    currentSliderValueChest = chestValue;
+    notifyListeners();
+  }
+  void getWaistValue({required double waistValue}){
+    currentSliderValueWaist = waistValue;
+    notifyListeners();
+  }
+  void getHipValue({required double hipValue}){
+    currentSliderValueHip = hipValue;
+    notifyListeners();
+  }
+  void getWeightValue({required double weightValue}){
+    currentSliderValueWeight = weightValue;
+    notifyListeners();
+  }
+  void getHeightValue({required double heightValue}){
+    currentSliderValueHeight = heightValue;
+    notifyListeners();
+  }
+
+
+
 
   String calculateBodyType(){
 
@@ -66,7 +101,6 @@ class CollectUserDataProvider with ChangeNotifier {
     return respostaProcessamento;
   }
 
-  notifyListeners();
 }
 
 

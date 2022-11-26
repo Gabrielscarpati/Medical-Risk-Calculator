@@ -4,6 +4,7 @@ import 'package:health_status/presenter/screeens/LogIn/viewLogIn.dart';
 import 'package:health_status/presenter/screeens/SignUp/viewSignUp.dart';
 import 'package:health_status/presenter/screeens/SignUp/views/SignUpScreen.dart';
 import 'package:health_status/presenter/screeens/collectUserData/viewCollectUserData.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart2/viewCollectUserDataPart2.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart1/viewMedicalReportPart1.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';

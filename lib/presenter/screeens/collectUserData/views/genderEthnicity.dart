@@ -14,56 +14,71 @@ class GenderEthnicity extends StatefulWidget {
 class _GenderEthnicity extends State<GenderEthnicity> {
   @override
   Widget build(BuildContext context) {
-    const List<String> list = <String>['Gender', 'Female'];
-    const List<String> list2 = <String>['Ethnicity', 'Female'];
+        CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
+        String? dropdownValueGender = _Provider.listGender.first;
+        String dropdownValueEthnicity = _Provider.listEthnicity.first;
 
-    String dropdownValue = list.first;
-
-    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
         double heightBetweenFields = 8.0;
         double screenWidth = MediaQuery.of(context).size.width;
         double screenHeight = MediaQuery.of(context).size.height;
+
         return Container(
-          color: Colors.orangeAccent[100],
-         // width: 10,
-          height: 160,
+          width: screenWidth-32,
+          height: 136,
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding:  EdgeInsets.only(right: 12.0, left: 12.0, bottom: 12.0),
             child: Container(
+
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                 Card(
+                  elevation: 8,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      ),
+
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8,left: 8),
-                    child: DropdownButton<String>(
-                      value: dropdownValue,
-                      isExpanded: true,
-                      icon: const Icon(Icons.arrow_downward),
-                      elevation: 16,
-                      style: const TextStyle(color: Colors.black),
+                      child: DropdownButton<String>(
+                        borderRadius:  BorderRadius.circular(12.0),
+                        underline: SizedBox(),
+                        value: dropdownValueGender,
+                        isExpanded: true,
+                        icon: const Icon(Icons.arrow_downward),
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.black),
 
-                    onChanged: (String? value) {
-                      // This is called when the user selects an item.
-                      setState(() {
-                        dropdownValue = value!;
-                      });
-                    },
-                    items: list.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                ),
+                      onChanged: (value) {
+                       print(value);
+                        setState(() {
+                          dropdownValueGender = value;
+                        });
+                      },
+
+                      items: _Provider.listGender.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
+
                   Card(
+                    elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 8,left: 8),
                       child: DropdownButton<String>(
+                        borderRadius:  BorderRadius.circular(12.0),
+                        underline: SizedBox(),
                         isExpanded: true,
-                        value: dropdownValue,
+                        value: dropdownValueEthnicity,
                         icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
                         style: const TextStyle(color: Colors.black),
@@ -71,10 +86,10 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                         onChanged: (String? value) {
                           // This is called when the user selects an item.
                           setState(() {
-                            dropdownValue = value!;
+                            dropdownValueEthnicity = value!;
                           });
                         },
-                        items: list.map<DropdownMenuItem<String>>((String value) {
+                        items: _Provider.listEthnicity.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
