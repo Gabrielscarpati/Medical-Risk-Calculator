@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import '../../../../providers/collectUserDataProvider.dart';
+import '../../checkBoxMedicalConditions.dart';
 import '../components/buttonWithMarginScreenCollectUserData.dart';
 import '../components/greenTextScreenCollectUserData.dart';
 import '../../../components/sliderBarWidget.dart';
@@ -29,16 +30,17 @@ class _AgeMedicalConditions extends State<AgeMedicalConditions> {
     return Container(
       //color: Colors.blue,
       width: screenWidth,
-      height: 280,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 12.0,top: 12.0,bottom: 12.0),
+      height:258,
+
+        child: Padding(
+        padding: const EdgeInsets.only(left: 12.0,top: 12.0,bottom: 6.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 0, top: 0, bottom: 20),
+                padding: EdgeInsets.only(left: 0, top: 0, bottom: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
@@ -68,7 +70,6 @@ class _AgeMedicalConditions extends State<AgeMedicalConditions> {
                 nameController: _provider.ageController,
                 hint: 'In years',),*/
 
-
               SizedBox(height: 20,),
 
               Row(
@@ -83,15 +84,18 @@ class _AgeMedicalConditions extends State<AgeMedicalConditions> {
                       height: 38,
                       width: 90,
                       child: LiteRollingSwitch(
+                        animationDuration: Duration(milliseconds: 450),
                         width: 72,
-                          value: true,
+                          value: false,
                           textOn: "on",
                           textOff: "off",
                           colorOn: Colors.green,
                           colorOff: Colors.redAccent,
                           iconOn: Icons.check_outlined,
                           iconOff: Icons.clear,
-                          onTap: (){print('');},
+                          onTap: (){
+                            _provider.changeMedicalConditions();
+                          },
                           onDoubleTap: (){print('');},
                           onSwipe: (){print('');},
                           onChanged: (bool position){
@@ -104,8 +108,19 @@ class _AgeMedicalConditions extends State<AgeMedicalConditions> {
               ),
               SizedBox(height: 20,),
 
-              ButtonWithMarginScreenCollectUserData(
-                text: 'Medical Conditions',
+              _provider.medicalConditions == 0
+              ? Text("")
+              : ButtonWithMarginScreenCollectUserData(
+                text: 'List your Medical Conditions',
+                goNextScreen: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => CheckBoxMedicalConditions()),
+                  );
+
+                },
+                  //ViewCollectUserDataPart2
               ),
 
           ],

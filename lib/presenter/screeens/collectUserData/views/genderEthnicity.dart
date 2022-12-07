@@ -15,7 +15,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
   @override
   Widget build(BuildContext context) {
         CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
-        String? dropdownValueGender = _Provider.listGender.first;
+        String? dropdownValueGender = _Provider.listGender[0];
         String dropdownValueEthnicity = _Provider.listEthnicity.first;
 
         double heightBetweenFields = 8.0;
@@ -49,13 +49,13 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                         icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
                         style: const TextStyle(color: Colors.black),
-
-                      onChanged: (value) {
-                       print(value);
-                        setState(() {
-                          dropdownValueGender = value;
-                        });
-                      },
+                        onChanged: (value) {
+                          _Provider.updateListGender(gender: value);
+                         print(value);
+                          setState(() {
+                            dropdownValueGender = value;
+                          });
+                        },
 
                       items: _Provider.listGender.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -84,10 +84,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                         style: const TextStyle(color: Colors.black),
 
                         onChanged: (String? value) {
-                          // This is called when the user selects an item.
-                          setState(() {
-                            dropdownValueEthnicity = value!;
-                          });
+                          _Provider.updateListEthnicity(gender: value);
                         },
                         items: _Provider.listEthnicity.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
@@ -98,6 +95,7 @@ class _GenderEthnicity extends State<GenderEthnicity> {
                       ),
                     ),
                   ),
+
             ],
           ),
         ),

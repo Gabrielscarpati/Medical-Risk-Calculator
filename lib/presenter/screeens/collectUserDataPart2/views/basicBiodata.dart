@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_status/presenter/screeens/collectUserData/components/greyTextScreenCollectUserData.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import '../../../components/sliderBarWidget.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class _BasicBiodata extends State<BasicBiodata> {
 
     double heightBetweenWidgets = 16;
 
+
     return Container(
       color: Colors.white,
       height: screenHeight-160,
@@ -47,13 +49,44 @@ class _BasicBiodata extends State<BasicBiodata> {
 
               SizedBox(height: heightBetweenWidgets,),
 
+              Container(
+                height: 44,
+                child: LiteRollingSwitch(
+                    animationDuration: Duration(milliseconds: 500),
+                    width: 280,
+                    value: true,
+                    textOn: "  Imperial system",textOnColor: Colors.white, textSize: 18,
+                    textOff: "  Metric system",
+                    colorOn: Colors.green,
+                    colorOff: Colors.orangeAccent,
+                    iconOn: Icons.change_circle_rounded,
+                    iconOff: Icons.change_circle_rounded,
+                    onTap: (){
+                      _Provider.currentSliderValueWeight =0;
+                     _Provider.changeMesureSystem();
+                      },
+                    onDoubleTap: (){print('');},
+                    onSwipe: (){print('');},
+                    onChanged: (bool position){
+                      print("Switch $position");
+                    }
+                ),
+              ),
+              SizedBox(height: heightBetweenWidgets-5,),
+
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: [
-                      GreenTextScreenCollectUserData(
-                        text: "Chest Circunference",
+                      Row(
+                        children: [
+                          GreenTextScreenCollectUserData(
+                            text: "Chest Circunference",
+                          ),
+                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                        ],
                       ),
                       SliderContainerChest(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueChest,),
 
@@ -74,8 +107,13 @@ class _BasicBiodata extends State<BasicBiodata> {
                 children: [
                   Column(
                     children: [
-                      GreenTextScreenCollectUserData(
-                        text: "Waist Circunference",
+                      Row(
+                        children: [
+                          GreenTextScreenCollectUserData(
+                            text: "Waist Circunference",
+                          ),
+                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                        ],
                       ),
                      SliderContainerWaist(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueWaist,),
 
@@ -95,8 +133,14 @@ class _BasicBiodata extends State<BasicBiodata> {
                 children: [
                   Column(
                     children: [
-                      GreenTextScreenCollectUserData(
-                        text: "Hip Size",
+                      Row(
+                        children: [
+                          GreenTextScreenCollectUserData(
+                            text: "Hip Circunference",
+                          ),
+
+                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                        ],
                       ),
                      SliderContainerHip(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueHip,),
 
@@ -104,7 +148,7 @@ class _BasicBiodata extends State<BasicBiodata> {
                   ),
                 ],
               ),
-              ShowSliderValue(text: _Provider.currentSliderValueHip.toStringAsFixed(2),),
+              ShowSliderValue(text:_Provider.currentSliderValueHip.toStringAsFixed(2),),
               /*ChestCircunference(
                 nameController: _Provider.hipSize,
                 hint: 'In centimeters',),*/
@@ -116,8 +160,13 @@ class _BasicBiodata extends State<BasicBiodata> {
                 children: [
                   Column(
                     children: [
-                      GreenTextScreenCollectUserData(
-                        text: "Height",
+                      Row(
+                        children: [
+                          GreenTextScreenCollectUserData(
+                            text: "Height",
+                          ),
+                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (Ft/In)" ),
+                        ],
                       ),
                      SliderContainerHeight(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueHeight,),
 
@@ -138,10 +187,21 @@ class _BasicBiodata extends State<BasicBiodata> {
                 children: [
                   Column(
                     children: [
-                      GreenTextScreenCollectUserData(
-                        text: "Weight",
+                      Row(
+                        children: [
+                          GreenTextScreenCollectUserData(
+                            text: "Weight",
+                          ),
+                          Text(_Provider.currentMesureSystem == 0.0? " (Kg)": " (Lb)" ),
+                        ],
                       ),
-                      SliderContainerWeight(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueWeight,),
+                      SliderContainerWeight(
+                        maxValue: _Provider.currentMesureSystem == 0.0? 100: 200,
+                        minValue: 0,
+                        textMaxValue: _Provider.currentMesureSystem == 0.0? '100': '200',
+                        textMinValue: '0',
+                        currentSliderValue: _Provider.currentMesureSystem == 0.0? _Provider.currentSliderValueWeight*2: _Provider.currentSliderValueWeight ,
+                      ),
 
                     ],
                   ),
@@ -152,12 +212,6 @@ class _BasicBiodata extends State<BasicBiodata> {
               /* ChestCircunference(
                 nameController: _Provider.weightController,
                 hint: 'In centimeters',),*/
-
-
-              SizedBox(height: heightBetweenWidgets*2,),
-              ButtonWithMarginScreenCollectUserData(
-                text: 'Calculate BMI',
-              ),
             ],
           )
         ),

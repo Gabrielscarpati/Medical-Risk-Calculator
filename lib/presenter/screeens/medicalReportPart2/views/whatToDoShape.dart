@@ -78,12 +78,12 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                       ConstrainedBox(
                                           constraints: BoxConstraints(
                                             maxHeight: 300,
-                                            maxWidth: screenWidth*.5,
+                                            maxWidth: screenWidth*.7,
                                           ),
                                           child: Container(
                                             //VER PQ TA DANDO ERRO . . .. . .
 
-                                            child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen\n', style: TextStyle(
+                                            child: const Text('Exercise at least 30 minutes per day to lose weight, and you can combine abdominal strengthening exercises to tighten the muscle.\n', style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
                                               fontStyle: FontStyle.italic,
@@ -118,12 +118,12 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                       ConstrainedBox(
                                           constraints: BoxConstraints(
                                             maxHeight: 300,
-                                            maxWidth: screenWidth*.5,
+                                            maxWidth: screenWidth*.7,
                                           ),
                                           child: Container(
                                             //VER PQ TA DANDO ERRO . . .. . .
 
-                                            child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen\n', style: TextStyle(
+                                            child: const Text('Try to incorporate more fruits and vegetables, and less fatty protein, such as salmon in your diet.\n', style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
                                               fontStyle: FontStyle.italic,

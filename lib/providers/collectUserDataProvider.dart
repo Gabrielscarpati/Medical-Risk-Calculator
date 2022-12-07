@@ -25,10 +25,13 @@ class CollectUserDataProvider with ChangeNotifier {
   double currentSliderValueHip = 0;
   double currentSliderValueWeight = 0;
   double currentSliderValueHeight = 0;
+  double BMI = 0;
 
-   List<String> listGender = ['Gender', 'Female','Male','Transgender'];
-   List<String> listEthnicity = ['Ethnicity', 'American Indian or Alaska Native','Asian',' Black or African American','Native Hawaiian or Other Pacific Islander','Hispanic or Latino'];
+  List<String> listGender = ['Gender', 'Female','Male','Others'];
+  List<String> listEthnicity = ['Ethnicity', 'American Indian or Alaska Native','Asian',' Black or African American','Native Hawaiian or Other Pacific Islander','Hispanic or Latino'];
 
+  double currentMesureSystem = 1;
+  double medicalConditions = 0;
 
   void getAgeValue({required double ageValue}){
     print(ageValue);
@@ -57,7 +60,59 @@ class CollectUserDataProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void changeMesureSystem(){
+    if(currentMesureSystem == 0){
+      currentMesureSystem = 1;
+    }
+    else{
+      currentMesureSystem = 0;
+    }
+    notifyListeners();
+  }
 
+  void changeMedicalConditions(){
+    if(medicalConditions == 0){
+      medicalConditions = 1;
+    }
+    else{
+      medicalConditions = 0;
+    }
+    notifyListeners();
+  }
+
+  void calculateBMI(){
+    double height = currentSliderValueHeight/100;
+    if (height == 0.0) height = 1;
+    BMI = currentSliderValueWeight/height * height;
+    notifyListeners();
+    //return currentSliderValueWeight/height * height;
+  }
+
+  void updateListGender({required String? gender}){
+    String temporary = "";
+    for(int i = 0; i<listGender.length; i++){
+      if(listGender[i] == gender){
+        temporary = listGender[i];
+        listGender[i] =listGender[0];
+        listGender[0] =temporary;
+        break;
+      }
+    }
+    notifyListeners();
+  }
+
+  void updateListEthnicity({required String? gender}){
+    String temporary = "";
+    for(int i = 0; i<listEthnicity.length; i++){
+      if(listEthnicity[i] == gender){
+        temporary = listEthnicity[i];
+        listEthnicity[i] =listEthnicity[0];
+        listEthnicity[0] =temporary;
+        break;
+      }
+    }
+    notifyListeners();
+  }
 
 
   String calculateBodyType(){
@@ -101,42 +156,19 @@ class CollectUserDataProvider with ChangeNotifier {
     return respostaProcessamento;
   }
 
+  bool highPressure = false;
+  bool hypertension = false;
+  bool dyslipidemia = false;
+  bool diabetes_1 = false;
+  bool diabetes_2 = false;
+  bool coronaryHeartDisease = false;
+  bool stroke = false;
+  bool osteoarthiritis = false;
+  bool gallbladderDisease = false;
+  bool sleepApnea = false;
+  bool cancer = false;
+  bool mentalIllnesses = false;
+  bool physicalHandicaps = false;
+
 }
 
-
-
-
-/*import java.util.Scanner;
-class Main {
-  public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
-    double chest;
-    double waist;
-    double hips;
-    System.out.println("What is your chest size?");
-    chest = scan.nextDouble();
-    System.out.println("What is your waist size?");
-    waist = scan.nextDouble();
-    System.out.println("What is your hip size?");
-    hips = scan.nextDouble();
-    if((chest - waist >= 4 && hips - waist >= 4)){
-      System.out.println("Hourglass");
-    }
-    else if (hips - chest >= 3 && hips - waist < 9){
-      System.out.println("Pear");
-    }
-    else if (chest - hips >= 3 && chest - waist < 9){
-      System.out.println("Inverted Triangle");
-    }
-     else if (hips - chest <= 4 && waist - hips >= 3 && waist - chest >= 3){
-      System.out.println("Spoon");
-    }
-    else if (hips - chest < 3 && chest - hips < 3 && chest - waist < 9 && hips - waist < 10){
-      System.out.println("Rectangle");
-    }
-    else{
-      System.out.println("Error");
-    }
-  }
-}
- */

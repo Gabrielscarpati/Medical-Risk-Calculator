@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart1/views/whyMightTheseRisksOccur.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart2/views/foodsToAvoid.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart2/views/whatToDoShape.dart';
+import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import '../../../../providers/collectUserDataProvider.dart';
 import 'VideoExercises.dart';
 
 class ViewMedicalReportPart2Body extends StatelessWidget {
@@ -22,10 +24,10 @@ class ViewMedicalReportPart2Body extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 10,
-                  child:   WhatToDoShape(),
+                  child:  WhatToDoShape(),
                 ),
                 Flexible(
-                  flex: 8,
+                  flex: 6,
                   child:   VideoExercises(),
                 ),
                 Flexible(
@@ -43,7 +45,8 @@ class UsfAndMedicalReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     return Container(
       //height: screenHeight*.15,
@@ -58,6 +61,7 @@ class UsfAndMedicalReport extends StatelessWidget {
                     color: Colors.grey,
                     fontWeight: FontWeight.bold
                 ), ),
+
               ],
             ),
           ),
@@ -70,6 +74,12 @@ class UsfAndMedicalReport extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                ), ),
+                SizedBox(width: screenWidth /4.5,),
+                Text("Your BMI is: ${_Provider.BMI}", style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  //fontWeight: FontWeight.bold,
                 ), ),
               ],
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../providers/collectUserDataProvider.dart';
 
 class SliderContainerAge extends StatefulWidget {
@@ -246,7 +245,7 @@ class _SliderContainerWeightState extends State<SliderContainerWeight> {
   @override
 
   Widget build(BuildContext context) {
-    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     return  Stack(
       children: [
@@ -256,11 +255,14 @@ class _SliderContainerWeightState extends State<SliderContainerWeight> {
           child: Slider(
             inactiveColor: Colors.grey,
             activeColor: Colors.orangeAccent,
-            value: widget.currentSliderValue,
+
+            value: _Provider.currentMesureSystem == 0.0? widget.currentSliderValue/2: widget.currentSliderValue,
             max: widget.maxValue,
             min: widget.minValue,
-            divisions: 100,
-            label: widget.currentSliderValue.round().toString(),
+
+            divisions: _Provider.currentMesureSystem == 0.0? 100: 200,
+            label:  _Provider.currentMesureSystem == 0.0? (widget.currentSliderValue/2).round().toString():widget.currentSliderValue.round().toString(),
+
             onChanged: (double value) {
               setState(() {
                 _Provider.getWeightValue(weightValue: value);

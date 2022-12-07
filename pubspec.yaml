@@ -118,6 +118,9 @@ dependencies:
 
   lite_rolling_switch: ^1.0.0
 
+  dropdown_button2: ^1.9.2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

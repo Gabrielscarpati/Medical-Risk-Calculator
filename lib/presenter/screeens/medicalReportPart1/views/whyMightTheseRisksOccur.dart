@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import '../../../../providers/collectUserDataProvider.dart';
 import '../../../components/buttonInsideApp.dart';
+import '../../collectUserData/components/buttonWithMarginScreenCollectUserData.dart';
 import '../../medicalReportPart2/viewMedicalReportPart2.dart';
 import '../components/greyTextScreenCollectUserData.dart';
 
@@ -16,7 +18,7 @@ class WhyMightTheseRisksOccur extends StatefulWidget {
 class _WhyMightTheseRisksOccur extends State<WhyMightTheseRisksOccur> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
+    final provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     RoundedLoadingButtonController controller = RoundedLoadingButtonController();
@@ -68,7 +70,18 @@ class _WhyMightTheseRisksOccur extends State<WhyMightTheseRisksOccur> {
                 ),
               ),
               SizedBox(
-                height: screenHeight/18,
+                height: screenHeight/24,
+              ),
+              Text("Your BMI is: "+provider.BMI.toStringAsFixed(3),
+                style: TextStyle(fontSize: 20),
+
+              ),
+
+             /* ButtonWithMarginScreenCollectUserData(
+                text: 'Calculate BMI',
+              ),*/
+              SizedBox(
+                height: screenHeight/60-1,
               ),
 
               ButtonInsideApp(

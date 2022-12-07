@@ -46,9 +46,7 @@ class _FoodsToAvoid extends State<FoodsToAvoid> {
                                   maxWidth: screenWidth -24,
                                 ),
                                 child: Container(
-                                  //VER PQ TA DANDO ERRO . . .. . .
-
-                                  child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen \n', style: TextStyle(
+                                  child: const Text('You should get no more than 25% to 30% of your daily calories from fats. You should limit saturated fat to less than 10% of your daily calories Foods to avoid include but are not limited to: Sugar, pizza, bread, bagels, rice, white potatoes and corn\n', style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontStyle: FontStyle.italic,

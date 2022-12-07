@@ -14,7 +14,7 @@ class CollectUserDataBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     RoundedLoadingButtonController controller = RoundedLoadingButtonController();
     return Container(
@@ -43,6 +43,7 @@ class CollectUserDataBody extends StatelessWidget {
                            fontSize: 20,
                           fontWeight: FontWeight.bold,
                       ), ),
+
                     ],
                   ),
                 ),

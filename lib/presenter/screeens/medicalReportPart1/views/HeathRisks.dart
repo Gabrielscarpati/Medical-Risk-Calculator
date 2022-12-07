@@ -46,7 +46,7 @@ class _HeathRisks extends State<HeathRisks> {
                                 child: Container(
                                   //VER PQ TA DANDO ERRO . . .. . .
 
-                                  child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen\n', style: TextStyle(
+                                  child: const Text('Exercise at least 30 minutes per day to lose weight, and you can combine abdominal strengthening exercises to tighten the muscle.\n', style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontStyle: FontStyle.italic,

@@ -14,7 +14,7 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     RoundedLoadingButtonController controller = RoundedLoadingButtonController();
     return Container(
@@ -51,6 +51,7 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
                 ButtonInsideApp(
                   buttonText: 'Generate report',
                   goNextScreen: () {
+                    _Provider.calculateBMI();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
