@@ -120,6 +120,7 @@ dependencies:
 
   dropdown_button2: ^1.9.2
 
+  numberpicker: ^2.1.1
 
 dev_dependencies:
   flutter_test:

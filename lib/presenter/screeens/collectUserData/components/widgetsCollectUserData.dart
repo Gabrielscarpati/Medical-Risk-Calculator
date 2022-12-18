@@ -273,7 +273,7 @@ class _ShowSliderValueState extends State<ShowSliderValue> {
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 0),
       child: SizedBox(
         height: 36,
-        width: 136,
+        width: 100,
         child: Material(
           elevation: 8,
           shadowColor: Colors.grey[100],

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
-import '../../../components/buttonInsideApp.dart';
-import '../../collectUserData/views/ageMedicalConditions.dart';
-import '../../collectUserData/views/genderEthnicity.dart';
-import '../../collectUserData/views/imageBodyType.dart';
 import '../../medicalReportPart1/viewMedicalReportPart1.dart';
 import 'basicBiodata.dart';
 import 'package:provider/provider.dart';
@@ -14,9 +10,9 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
+    final CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
-    RoundedLoadingButtonController controller = RoundedLoadingButtonController();
+    RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
     return Container(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -48,17 +44,36 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
                 ),
                // Expanded(
                 BasicBiodata(),
-                ButtonInsideApp(
+                ElevatedButton(onPressed: (){
+                  _Provider.calculateBMI();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => const ViewMedicalReportPart1()),
+                  );
+                  _Provider.getBodyType();
+                    }, child: Text(
+                  'here'
+                )),
+               /* ButtonInsideApp(
+                  controller: _controller,
                   buttonText: 'Generate report',
                   goNextScreen: () {
+                    _Provider.getBodyType();
                     _Provider.calculateBMI();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (_) => const ViewMedicalReportPart1()),
                     );
+                    *//*if(1==1){
+                      controller.start();
+
+                    }*//*
+                    _controller.reset();
                   },
-                  controller: controller,)
+
+                )*/
         ],
       ),
     );

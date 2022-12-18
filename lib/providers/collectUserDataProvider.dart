@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import '../ultil/respostaProcessamento.dart';
 
 
@@ -20,12 +19,24 @@ class CollectUserDataProvider with ChangeNotifier {
   final hipSize = TextEditingController();*/
 
   double currentSliderValueAge = 0;
-  double currentSliderValueChest = 0;
-  double currentSliderValueWaist = 0;
-  double currentSliderValueHip = 0;
-  double currentSliderValueWeight = 0;
-  double currentSliderValueHeight = 0;
+  int currentValueChest = 0;
+  int currentValueChestDecimal = 0;
+
+  int currentValueWaist = 0;
+  int currentValueWaistDecimal = 0;
+
+  int currentValueHip = 0;
+  int currentValueHipDecimal = 0;
+
+  int currentValueWeight = 0;
+  int currentValueWeightDecimal = 0;
+
+  int currentValueHeight = 0;
+  int currentValueHeightDecimal = 0;
+
   double BMI = 0;
+
+
 
   List<String> listGender = ['Gender', 'Female','Male','Others'];
   List<String> listEthnicity = ['Ethnicity', 'American Indian or Alaska Native','Asian',' Black or African American','Native Hawaiian or Other Pacific Islander','Hispanic or Latino'];
@@ -34,29 +45,50 @@ class CollectUserDataProvider with ChangeNotifier {
   double medicalConditions = 0;
 
   void getAgeValue({required double ageValue}){
-    print(ageValue);
     currentSliderValueAge = ageValue;
     notifyListeners();
   }
 
-  void getChestValue({required double chestValue}){
-    currentSliderValueChest = chestValue;
+  void getChestValue({required var chestValue}){
+    currentValueChest = chestValue;
     notifyListeners();
   }
-  void getWaistValue({required double waistValue}){
-    currentSliderValueWaist = waistValue;
+  void getChestValueDecimal({ required var chestValueDecimal}){
+    currentValueChestDecimal = chestValueDecimal;
     notifyListeners();
   }
-  void getHipValue({required double hipValue}){
-    currentSliderValueHip = hipValue;
+
+  void getWaistValue({required int waistValue}){
+    currentValueWaist = waistValue;
     notifyListeners();
   }
-  void getWeightValue({required double weightValue}){
-    currentSliderValueWeight = weightValue;
+  void getHipValue({required int hipValue}){
+    currentValueHip = hipValue;
     notifyListeners();
   }
-  void getHeightValue({required double heightValue}){
-    currentSliderValueHeight = heightValue;
+  void getWeightValue({required int weightValue}){
+    currentValueWeight = weightValue;
+    notifyListeners();
+  }
+  void getHeightValue({required int heightValue}){
+    currentValueHeight = heightValue;
+    notifyListeners();
+  }
+
+  void getWaistValueDecimal({required int waistValueDecimal}){
+    currentValueWaistDecimal = waistValueDecimal;
+    notifyListeners();
+  }
+  void getHipValueDecimal({required int hipValueDecimal}){
+    currentValueHipDecimal = hipValueDecimal;
+    notifyListeners();
+  }
+  void getWeightValueDecimal({required int weightValueDecimal}){
+    currentValueWeightDecimal = weightValueDecimal;
+    notifyListeners();
+  }
+  void getHeightValueDecimal({required int heightValueDecimal}){
+    currentValueHeightDecimal = heightValueDecimal;
     notifyListeners();
   }
 
@@ -81,9 +113,9 @@ class CollectUserDataProvider with ChangeNotifier {
   }
 
   void calculateBMI(){
-    double height = currentSliderValueHeight/100;
+    double height = currentValueHeight+(currentValueHeightDecimal/100)/100;
     if (height == 0.0) height = 1;
-    BMI = currentSliderValueWeight/height * height;
+    BMI = currentValueWeight/height * height;
     notifyListeners();
     //return currentSliderValueWeight/height * height;
   }
@@ -115,21 +147,22 @@ class CollectUserDataProvider with ChangeNotifier {
   }
 
 
-  String calculateBodyType(){
+  String getBodyType(){
+    // inches
 
-    if((currentSliderValueChest - currentSliderValueWaist >= 4 && currentSliderValueHip - currentSliderValueWaist >= 4)){
+    if(((currentValueChest - currentValueWaist)/2.54 >= 4 && (currentValueHip - currentValueWaist)/2.54 >= 4)){
       print("Hourglass");
     }
-    else if (currentSliderValueHip - currentSliderValueChest >= 3 && currentSliderValueHip - currentSliderValueWaist < 9){
+    else if ((currentValueHip - currentValueChest)/2.54 >= 3 && (currentValueHip - currentValueWaist)/2.54 < 9){
       print("Pear");
     }
-    else if (currentSliderValueChest - currentSliderValueHip >= 3 && currentSliderValueChest - currentSliderValueWaist < 9){
+    else if ((currentValueChest - currentValueHip)/2.54 >= 3 && (currentValueChest - currentValueWaist)/2.54 < 9){
       print("Inverted Triangle");
     }
-    else if (currentSliderValueHip - currentSliderValueChest <= 4 && currentSliderValueWaist - currentSliderValueHip >= 3 && currentSliderValueWaist - currentSliderValueChest >= 3){
+    else if ((currentValueHip - currentValueChest)/2.54 <= 4 && (currentValueWaist - currentValueHip)/2.54 >= 3 && (currentValueWaist - currentValueChest)/2.54 >= 3){
       print("Spoon");
     }
-    else if (currentSliderValueHip - currentSliderValueChest < 3 && currentSliderValueChest - currentSliderValueHip < 3 && currentSliderValueChest - currentSliderValueWaist < 9 && currentSliderValueHip - currentSliderValueWaist < 10){
+    else if ((currentValueHip - currentValueChest)/2.54 < 3 && (currentValueChest - currentValueHip)/2.54 < 3 && (currentValueChest - currentValueWaist)/2.54 < 9 && (currentValueHip - currentValueWaist)/2.54 < 10){
       print("Rectangle");
     }
     else{
@@ -142,11 +175,6 @@ class CollectUserDataProvider with ChangeNotifier {
     RespostaProcessamento respostaProcessamento = RespostaProcessamento.ok();
 
     try{
-
-     /* List<Snippet> tempSnippetList = await DaoYoutube().snippetsFromJsom(videoName: videoName.text.trim());
-      tempSnippetList.forEach((element) {
-        snippetList.add(element);
-      });*/
 
      print("a");
     }catch(err){

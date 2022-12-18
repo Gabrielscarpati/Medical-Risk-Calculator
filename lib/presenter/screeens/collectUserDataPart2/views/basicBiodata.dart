@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:health_status/presenter/screeens/collectUserData/components/greyTextScreenCollectUserData.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:numberpicker/numberpicker.dart';
 import '../../../components/sliderBarWidget.dart';
 import 'package:provider/provider.dart';
-
-import '../../collectUserData/components/buttonWithMarginScreenCollectUserData.dart';
 import '../../collectUserData/components/greenTextScreenCollectUserData.dart';
 import '../../collectUserData/components/widgetsCollectUserData.dart';
 
@@ -22,12 +21,10 @@ class _BasicBiodata extends State<BasicBiodata> {
   Widget build(BuildContext context) {
 
     CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
-    double heightBetweenFields = 8.0;
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     double heightBetweenWidgets = 16;
-
 
     return Container(
       color: Colors.white,
@@ -37,8 +34,7 @@ class _BasicBiodata extends State<BasicBiodata> {
         child: Container(
           child: Column(
             children: [
-
-
+              
               Row(
                 children: [
                   GreyTextScreenCollectUserData(text: "Basic Biodata"),
@@ -46,7 +42,7 @@ class _BasicBiodata extends State<BasicBiodata> {
 
                 ],
               ),
-
+              
               SizedBox(height: heightBetweenWidgets,),
 
               Container(
@@ -62,10 +58,18 @@ class _BasicBiodata extends State<BasicBiodata> {
                     iconOn: Icons.change_circle_rounded,
                     iconOff: Icons.change_circle_rounded,
                     onTap: (){
-                      _Provider.currentSliderValueWeight =0;
-                     _Provider.changeMesureSystem();
-                      },
-                    onDoubleTap: (){print('');},
+                      _Provider.currentValueWeight = 0;
+                      _Provider.changeMesureSystem();
+
+                      if(_Provider.currentMesureSystem ==0.0){
+                        _Provider.getChestValue(chestValue: _Provider.currentValueChest~/2.54);
+                        _Provider.getWaistValue(waistValue: _Provider.currentValueWaist~/2.54);
+                        _Provider.getHipValue(hipValue: _Provider.currentValueHip~/2.54);
+                        _Provider.getHeightValue(heightValue: _Provider.currentValueHeight~/2.54);
+                        _Provider.getWeightValue(weightValue: _Provider.currentValueWeight~/2.54);
+                      }
+                     },
+                    onDoubleTap: (){},
                     onSwipe: (){print('');},
                     onChanged: (bool position){
                       print("Switch $position");
@@ -75,111 +79,268 @@ class _BasicBiodata extends State<BasicBiodata> {
               SizedBox(height: heightBetweenWidgets-5,),
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
+                      const GreenTextScreenCollectUserData(
+                        text: "Chest Circumference",
+                      ),
+                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
                         children: [
-                          GreenTextScreenCollectUserData(
-                            text: "Chest Circunference",
-                          ),
-                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+
+                          NumberPickerChest( currentSliderValue: _Provider.currentValueChest, currentSliderValueDecimal: _Provider.currentValueChestDecimal,),
                         ],
                       ),
-                      SliderContainerChest(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueChest,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
 
+                          _Provider.currentMesureSystem == 1
+                              ? ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0)+ "." +_Provider.currentValueChestDecimal.toStringAsFixed(0),)
+                          :ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0) + "." +_Provider.currentValueChestDecimal.toStringAsFixed(0),),
+
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              SizedBox(width: 38),
+                              Text("Minimum value: 0"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 100"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-              ShowSliderValue(text: _Provider.currentSliderValueChest.toStringAsFixed(2),),
-
-              /*ChestCircunference(
-                nameController: _Provider.chestCircumferenceController,
-                hint: 'In centimeters',),*/
-              SizedBox(height: heightBetweenWidgets,),
+              SizedBox(height: heightBetweenWidgets-5,),
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
+                      const GreenTextScreenCollectUserData(
+                        text: "Waist Circumference",
+                      ),
+                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
                         children: [
-                          GreenTextScreenCollectUserData(
-                            text: "Waist Circunference",
-                          ),
-                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+
+                          NumberPickerWaist( currentSliderValue: _Provider.currentValueWaist, currentSliderValueDecimal: _Provider.currentValueWaistDecimal,),
                         ],
                       ),
-                     SliderContainerWaist(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueWaist,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
 
+
+                          ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0) + "." + _Provider.currentValueWaistDecimal.toStringAsFixed(0),),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 0"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 100"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-              ShowSliderValue(text: _Provider.currentSliderValueWaist.toStringAsFixed(2),),
-              /* ChestCircunference(
-                nameController: _Provider.waistCircumferenceController,
-                hint: 'In centimeters',),*/
-              SizedBox(height: heightBetweenWidgets,),
+
+              SizedBox(height: heightBetweenWidgets-5,),
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          GreenTextScreenCollectUserData(
-                            text: "Hip Circunference",
-                          ),
+                      const GreenTextScreenCollectUserData(
+                        text: "Hip Circumference",
+                      ),
+                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
 
-                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                      Column(
+                        children: [
+
+                          NumberPickerHip( currentSliderValue: _Provider.currentValueHip, currentSliderValueDecimal: _Provider.currentValueHipDecimal),
                         ],
                       ),
-                     SliderContainerHip(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueHip,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
 
+
+                          ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0)+"."+_Provider.currentValueHipDecimal.toStringAsFixed(0),),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 0"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 100"),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
-              ShowSliderValue(text:_Provider.currentSliderValueHip.toStringAsFixed(2),),
-              /*ChestCircunference(
-                nameController: _Provider.hipSize,
-                hint: 'In centimeters',),*/
-              SizedBox(height: heightBetweenWidgets,),
+              SizedBox(height: heightBetweenWidgets-5,),
+            ],
+          )
+        ),
+      ),
+    );
+  }
+}
 
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+
+/*
+              _Provider.currentMesureSystem == 1?
+              Column(
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
+                      Column(
                         children: [
-                          GreenTextScreenCollectUserData(
-                            text: "Height",
+                          Row(
+                            children: [
+                              GreenTextScreenCollectUserData(
+                                text: "Height",
+                              ),
+
+
+                              Text(" (Ft/In)" ),
+                            ],
                           ),
-                          Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (Ft/In)" ),
+
+                          SliderContainerHeight(maxValue: 240, minValue: 40, textMaxValue: "7'"+'10"', textMinValue: "1'" +'3"', currentSliderValue: _Provider.currentSliderValueHeight,),
+
                         ],
                       ),
-                     SliderContainerHeight(maxValue: 100, minValue: 0, textMaxValue: '100', textMinValue: '0', currentSliderValue: _Provider.currentSliderValueHeight,),
-
                     ],
                   ),
+                  SizedBox(
+                    height: 36,
+                    width: 170,
+                    child: Material(
+                      elevation: 8,
+                      shadowColor: Colors.grey[100],
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(12),
+                      child:Card(
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child:  Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                              Text("${(_Provider.currentSliderValueHeight~/30.48).toStringAsFixed(0)}'", style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold
+                              ),
+                              ),
+
+                              SizedBox(width: 4,),
+
+
+                              Text('${( (_Provider.currentSliderValueHeight-(_Provider.currentSliderValueHeight~/30.48)*30.48)~/2.54).toStringAsFixed(0)}"', style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold
+                              ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: heightBetweenWidgets,),
+                ],
+              )
+
+              :Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              GreenTextScreenCollectUserData(
+                                text: "Height",
+                              ),
+                              Text(" (Cm)"),
+                            ],
+                          ),
+                          SliderContainerHeight(maxValue: 240, minValue: 40, textMaxValue: '240', textMinValue: '40', currentSliderValue: _Provider.currentSliderValueHeight,),
+
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  ShowSliderValue(text: _Provider.currentSliderValueHeight.toStringAsFixed(2),),
+
+                  SizedBox(height: heightBetweenWidgets,),
+
                 ],
               ),
-              ShowSliderValue(text: _Provider.currentSliderValueHeight.toStringAsFixed(2),),
-
-              /* ChestCircunference(
-                nameController: _Provider.heightController,
-                hint: 'In centimeters',),*/
-              SizedBox(height: heightBetweenWidgets,),
 
 
               Row(
@@ -196,7 +357,7 @@ class _BasicBiodata extends State<BasicBiodata> {
                         ],
                       ),
                       SliderContainerWeight(
-                        maxValue: _Provider.currentMesureSystem == 0.0? 100: 200,
+                        maxValue: 100,
                         minValue: 0,
                         textMaxValue: _Provider.currentMesureSystem == 0.0? '100': '200',
                         textMinValue: '0',
@@ -213,9 +374,13 @@ class _BasicBiodata extends State<BasicBiodata> {
                 nameController: _Provider.weightController,
                 hint: 'In centimeters',),*/
             ],
-          )
-        ),
-      ),
-    );
-  }
-}
+          )*/
+
+
+
+
+
+
+
+
+
