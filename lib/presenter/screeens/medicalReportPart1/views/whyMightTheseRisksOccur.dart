@@ -4,7 +4,6 @@ import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
 import '../../../components/buttonInsideApp.dart';
-import '../../collectUserData/components/buttonWithMarginScreenCollectUserData.dart';
 import '../../medicalReportPart2/viewMedicalReportPart2.dart';
 import '../components/greyTextScreenCollectUserData.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 import '../../../components/loadingButton.dart';
 import '../../SignUp/viewSignUp.dart';
 import '../../SignUp/views/widgetsForSignUp.dart';
-import '../../collectUserData/viewCollectUserData.dart';
 
 
 class LogInScreen extends StatefulWidget {
@@ -69,7 +69,7 @@ class _LogInScreenScreenState extends State<LogInScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ViewCollectUserData()),
+                          builder: (_) => const ViewCollectUserDataPart_1()),
                     );
                   },
                   controller: controller,

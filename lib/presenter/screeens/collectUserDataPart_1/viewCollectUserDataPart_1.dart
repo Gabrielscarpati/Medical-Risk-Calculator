@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:health_status/presenter/screeens/collectUserDataPart2/views/collectUserDataBodyPart2.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart_1/views/collectUserDataBodyPart_1.dart';
 import 'package:provider/provider.dart';
-import 'package:health_status/presenter/screeens/collectUserData/views/collectUserDataBody.dart';
 import '../../../providers/collectUserDataProvider.dart';
 import '../../../ultil/respostaProcessamento.dart';
 
 
-class ViewCollectUserDataPart2 extends StatefulWidget {
-  const ViewCollectUserDataPart2({Key? key}) : super(key: key);
+class ViewCollectUserDataPart_1 extends StatefulWidget {
+  const ViewCollectUserDataPart_1({Key? key}) : super(key: key);
 
   @override
-  State<ViewCollectUserDataPart2> createState() => _ViewCollectUserDataPart2State();
+  State<ViewCollectUserDataPart_1> createState() => _ViewCollectUserDataPart_1State();
 }
 
-class _ViewCollectUserDataPart2State extends State<ViewCollectUserDataPart2> {
+class _ViewCollectUserDataPart_1State extends State<ViewCollectUserDataPart_1> {
   late Future<RespostaProcessamento> response;
 
   @override
@@ -29,7 +28,7 @@ class _ViewCollectUserDataPart2State extends State<ViewCollectUserDataPart2> {
         backgroundColor: Colors.white,
         body: Container(
           height: 910,
-              child: CollectUserDataBodyPart2(),
+              child: CollectUserDataBodyPart_1(),
 
       ),
     );

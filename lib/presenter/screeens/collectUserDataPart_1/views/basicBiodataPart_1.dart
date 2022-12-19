@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:health_status/presenter/screeens/collectUserData/components/greyTextScreenCollectUserData.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:numberpicker/numberpicker.dart';
 import '../../../components/sliderBarWidget.dart';
 import 'package:provider/provider.dart';
-import '../../collectUserData/components/greenTextScreenCollectUserData.dart';
-import '../../collectUserData/components/widgetsCollectUserData.dart';
+import '../../collectUserData_3/components/greenTextScreenCollectUserData.dart';
+import '../../collectUserData_3/components/greyTextScreenCollectUserData.dart';
+import '../../collectUserData_3/components/widgetsCollectUserData.dart';
 
-
-class BasicBiodata extends StatefulWidget {
-  const BasicBiodata({Key? key}) : super(key: key);
+class BasicBiodataPart_1 extends StatefulWidget {
+  const BasicBiodataPart_1({Key? key}) : super(key: key);
 
   @override
-  State<BasicBiodata> createState() => _BasicBiodata();
+  State<BasicBiodataPart_1> createState() => _BasicBiodataPart_1();
 }
 
-class _BasicBiodata extends State<BasicBiodata> {
+class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
   @override
   Widget build(BuildContext context) {
 
@@ -51,17 +49,17 @@ class _BasicBiodata extends State<BasicBiodata> {
                     animationDuration: Duration(milliseconds: 500),
                     width: 280,
                     value: true,
-                    textOn: "  Imperial system",textOnColor: Colors.white, textSize: 18,
-                    textOff: "  Metric system",
+                    textOn: "  Metric system",textOnColor: Colors.white, textSize: 18,
+                    textOff: "  Imperial system",
                     colorOn: Colors.green,
                     colorOff: Colors.orangeAccent,
                     iconOn: Icons.change_circle_rounded,
                     iconOff: Icons.change_circle_rounded,
                     onTap: (){
                       _Provider.currentValueWeight = 0;
-                      _Provider.changeMesureSystem();
+                      _Provider.changeMesureSystem_1();
 
-                      if(_Provider.currentMesureSystem ==0.0){
+                      if(_Provider.currentMesureSystem_1 ==0.0){
                         _Provider.getChestValue(chestValue: _Provider.currentValueChest~/2.54);
                         _Provider.getWaistValue(waistValue: _Provider.currentValueWaist~/2.54);
                         _Provider.getHipValue(hipValue: _Provider.currentValueHip~/2.54);
@@ -87,7 +85,7 @@ class _BasicBiodata extends State<BasicBiodata> {
                       const GreenTextScreenCollectUserData(
                         text: "Chest Circumference",
                       ),
-                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                      //Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
                     ],
                   ),
                   Row(
@@ -104,9 +102,9 @@ class _BasicBiodata extends State<BasicBiodata> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          _Provider.currentMesureSystem == 1
-                              ? ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0)+ "." +_Provider.currentValueChestDecimal.toStringAsFixed(0),)
-                          :ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0) + "." +_Provider.currentValueChestDecimal.toStringAsFixed(0),),
+                          _Provider.currentMesureSystem_1 == 1
+                              ? ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0)+ "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' Cm',)
+                          :ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0) + "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' In',),
 
                           SizedBox(height: 8),
                           Row(
@@ -140,7 +138,7 @@ class _BasicBiodata extends State<BasicBiodata> {
                       const GreenTextScreenCollectUserData(
                         text: "Waist Circumference",
                       ),
-                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                      Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
                     ],
                   ),
                   Row(
@@ -158,7 +156,9 @@ class _BasicBiodata extends State<BasicBiodata> {
                         children: [
 
 
-                          ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0) + "." + _Provider.currentValueWaistDecimal.toStringAsFixed(0),),
+                          _Provider.currentMesureSystem_1 == 1
+                              ? ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0)+ "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' Cm',)
+                              :ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0) + "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' In',),
                           SizedBox(height: 8,),
                           Row(
                             children: [
@@ -192,7 +192,7 @@ class _BasicBiodata extends State<BasicBiodata> {
                       const GreenTextScreenCollectUserData(
                         text: "Hip Circumference",
                       ),
-                      Text(_Provider.currentMesureSystem == 0.0? " (Cm)": " (In)" ),
+                      Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
                     ],
                   ),
                   Row(
@@ -210,7 +210,9 @@ class _BasicBiodata extends State<BasicBiodata> {
                         children: [
 
 
-                          ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0)+"."+_Provider.currentValueHipDecimal.toStringAsFixed(0),),
+                          _Provider.currentMesureSystem_1 == 1
+                              ? ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0)+ "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' Cm',)
+                              :ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0) + "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' In',),
                           SizedBox(height: 8,),
                           Row(
                             children: [

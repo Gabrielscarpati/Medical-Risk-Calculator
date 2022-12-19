@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
-import '../../medicalReportPart1/viewMedicalReportPart1.dart';
-import 'basicBiodata.dart';
+import '../../collectUserDataPart_2/viewCollectUserDataPart_2.dart';
+import '../../collectUserData_3/viewCollectUserData_3.dart';
+import '../viewCollectUserDataPart_1.dart';
+import 'basicBiodataPart_1.dart';
 import 'package:provider/provider.dart';
 
-class CollectUserDataBodyPart2 extends StatelessWidget {
-  const CollectUserDataBodyPart2({Key? key}) : super(key: key);
+class CollectUserDataBodyPart_1 extends StatelessWidget {
+  const CollectUserDataBodyPart_1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +45,14 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
                   ),
                 ),
                // Expanded(
-                BasicBiodata(),
+                BasicBiodataPart_1(),
                 ElevatedButton(onPressed: (){
                   _Provider.calculateBMI();
-                  Navigator.push(
+                  /*Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (_) => const ViewMedicalReportPart1()),
-                  );
+                        builder: (_) =>  ViewCollectUserDataPart_2()),
+                  );*/
                   _Provider.getBodyType();
                     }, child: Text(
                   'here'
@@ -64,7 +66,7 @@ class CollectUserDataBodyPart2 extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ViewMedicalReportPart1()),
+                          builder: (_) => const ViewCollectUserData_2()),
                     );
                     *//*if(1==1){
                       controller.start();

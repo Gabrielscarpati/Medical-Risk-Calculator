@@ -87,7 +87,7 @@ class _NumberPickerChestState extends State<NumberPickerChest> {
         Stack(
           alignment: Alignment.center,
           children: [
-            PositionedContainer(spacebetween: spacebetween,),
+           // PositionedContainer(spacebetween: spacebetween,),
             Row(
               children: [
                 Container(
@@ -109,7 +109,7 @@ class _NumberPickerChestState extends State<NumberPickerChest> {
                     itemCount: 3,
                     value: _Provider.currentValueChest,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 500,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getChestValue(chestValue: value);
@@ -140,7 +140,7 @@ class _NumberPickerChestState extends State<NumberPickerChest> {
                     itemCount: 3,
                     value: _Provider.currentValueChestDecimal,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 99,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getChestValueDecimal(chestValueDecimal: value,);
@@ -186,7 +186,7 @@ class _NumberPickerWaistState extends State<NumberPickerWaist> {
         Stack(
           alignment: Alignment.center,
           children: [
-            PositionedContainer(spacebetween: spacebetween,),
+            //PositionedContainer(spacebetween: spacebetween,),
             Row(
               children: [
                 Container(
@@ -208,7 +208,7 @@ class _NumberPickerWaistState extends State<NumberPickerWaist> {
                     itemCount: 3,
                     value: _Provider.currentValueWaist,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 500,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getWaistValue(waistValue: value);
@@ -239,7 +239,7 @@ class _NumberPickerWaistState extends State<NumberPickerWaist> {
                     itemCount: 3,
                     value: _Provider.currentValueWaistDecimal,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 99,
                     onChanged: (value) {
                         setState(() {
                           _Provider.getWaistValueDecimal(waistValueDecimal: value);
@@ -286,7 +286,7 @@ class _NumberPickerHipState extends State<NumberPickerHip> {
         Stack(
           alignment: Alignment.center,
           children: [
-            PositionedContainer(spacebetween: spacebetween,),
+            //PositionedContainer(spacebetween: spacebetween,),
             Row(
               children: [
                 Container(
@@ -308,7 +308,7 @@ class _NumberPickerHipState extends State<NumberPickerHip> {
                     itemCount: 3,
                     value: _Provider.currentValueHip,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 500,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHipValue(hipValue: value);
@@ -339,7 +339,7 @@ class _NumberPickerHipState extends State<NumberPickerHip> {
                     itemCount: 3,
                     value: _Provider.currentValueHipDecimal,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 99,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHipValueDecimal(hipValueDecimal: value,);
@@ -386,7 +386,7 @@ class _NumberPickerHeightState extends State<NumberPickerHeight> {
         Stack(
           alignment: Alignment.center,
           children: [
-            PositionedContainer(spacebetween: spacebetween,),
+            //PositionedContainer(spacebetween: spacebetween,),
             Row(
               children: [
                 Container(
@@ -408,7 +408,7 @@ class _NumberPickerHeightState extends State<NumberPickerHeight> {
                     itemCount: 3,
                     value: _Provider.currentValueHeight,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 500,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHeightValue(heightValue: value);
@@ -439,7 +439,7 @@ class _NumberPickerHeightState extends State<NumberPickerHeight> {
                     itemCount: 3,
                     value: _Provider.currentValueHeightDecimal,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 99,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHeightValueDecimal(heightValueDecimal: value,);
@@ -486,7 +486,7 @@ class _NumberPickerWeightState extends State<NumberPickerWeight> {
         Stack(
           alignment: Alignment.center,
           children: [
-            PositionedContainer(spacebetween: spacebetween,),
+            //PositionedContainer(spacebetween: spacebetween,),
             Row(
               children: [
                 Container(
@@ -508,7 +508,7 @@ class _NumberPickerWeightState extends State<NumberPickerWeight> {
                     itemCount: 3,
                     value: _Provider.currentValueWeight,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 500,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getWeightValue(weightValue: value);
@@ -539,7 +539,7 @@ class _NumberPickerWeightState extends State<NumberPickerWeight> {
                     itemCount: 3,
                     value: _Provider.currentValueWeightDecimal,
                     minValue: 0,
-                    maxValue: 100,
+                    maxValue: 99,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getWeightValueDecimal(weightValueDecimal: value,);

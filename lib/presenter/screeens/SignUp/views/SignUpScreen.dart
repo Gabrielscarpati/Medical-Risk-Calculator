@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_status/presenter/screeens/collectUserData/viewCollectUserData.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -87,7 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => const ViewCollectUserData()),
+                      builder: (_) => const ViewCollectUserDataPart_1()),
                 );
                 contrrr.reset();
               },

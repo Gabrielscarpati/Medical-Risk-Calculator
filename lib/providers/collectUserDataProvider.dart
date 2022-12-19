@@ -19,20 +19,21 @@ class CollectUserDataProvider with ChangeNotifier {
   final hipSize = TextEditingController();*/
 
   double currentSliderValueAge = 0;
-  int currentValueChest = 0;
-  int currentValueChestDecimal = 0;
 
-  int currentValueWaist = 0;
-  int currentValueWaistDecimal = 0;
+  int currentValueChest = 80;
+  int currentValueChestDecimal = 45;
 
-  int currentValueHip = 0;
-  int currentValueHipDecimal = 0;
+  int currentValueWaist = 80;
+  int currentValueWaistDecimal = 45;
 
-  int currentValueWeight = 0;
-  int currentValueWeightDecimal = 0;
+  int currentValueHip = 80;
+  int currentValueHipDecimal = 45;
 
-  int currentValueHeight = 0;
-  int currentValueHeightDecimal = 0;
+  int currentValueWeight = 80;
+  int currentValueWeightDecimal = 45;
+
+  int currentValueHeight = 80;
+  int currentValueHeightDecimal = 45;
 
   double BMI = 0;
 
@@ -41,7 +42,9 @@ class CollectUserDataProvider with ChangeNotifier {
   List<String> listGender = ['Gender', 'Female','Male','Others'];
   List<String> listEthnicity = ['Ethnicity', 'American Indian or Alaska Native','Asian',' Black or African American','Native Hawaiian or Other Pacific Islander','Hispanic or Latino'];
 
-  double currentMesureSystem = 1;
+  double currentMesureSystem_1 = 1;
+  double currentMesureSystem_2 = 1;
+
   double medicalConditions = 0;
 
   void getAgeValue({required double ageValue}){
@@ -92,12 +95,22 @@ class CollectUserDataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void changeMesureSystem(){
-    if(currentMesureSystem == 0){
-      currentMesureSystem = 1;
+  void changeMesureSystem_1(){
+    if(currentMesureSystem_1 == 0){
+      currentMesureSystem_1 = 1;
     }
     else{
-      currentMesureSystem = 0;
+      currentMesureSystem_1 = 0;
+    }
+    notifyListeners();
+  }
+
+  void changeMesureSystem_2(){
+    if(currentMesureSystem_2 == 0){
+      currentMesureSystem_2 = 1;
+    }
+    else{
+      currentMesureSystem_2 = 0;
     }
     notifyListeners();
   }
@@ -147,26 +160,56 @@ class CollectUserDataProvider with ChangeNotifier {
   }
 
 
-  String getBodyType(){
+  String getBodyType(){ // metric =1
     // inches
+    if(currentMesureSystem_1 == 1.0) {
+      print(currentMesureSystem_1.toString()+"aaaaaaaa");
 
-    if(((currentValueChest - currentValueWaist)/2.54 >= 4 && (currentValueHip - currentValueWaist)/2.54 >= 4)){
-      print("Hourglass");
+      if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4)) {
+        print("Hourglass");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) / 2.54 < 9) {
+        print("Pear");
+      } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100) / 2.54 >= 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9) {
+        print("Inverted Triangle");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 <= 4 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) / 2.54 >= 3 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3) {
+        print("Spoon");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)) / 2.54 < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 10) {
+        print("Rectangle");
+      } else {
+        print("Error");
+      }
     }
-    else if ((currentValueHip - currentValueChest)/2.54 >= 3 && (currentValueHip - currentValueWaist)/2.54 < 9){
-      print("Pear");
-    }
-    else if ((currentValueChest - currentValueHip)/2.54 >= 3 && (currentValueChest - currentValueWaist)/2.54 < 9){
-      print("Inverted Triangle");
-    }
-    else if ((currentValueHip - currentValueChest)/2.54 <= 4 && (currentValueWaist - currentValueHip)/2.54 >= 3 && (currentValueWaist - currentValueChest)/2.54 >= 3){
-      print("Spoon");
-    }
-    else if ((currentValueHip - currentValueChest)/2.54 < 3 && (currentValueChest - currentValueHip)/2.54 < 3 && (currentValueChest - currentValueWaist)/2.54 < 9 && (currentValueHip - currentValueWaist)/2.54 < 10){
-      print("Rectangle");
-    }
-    else{
-     // System.out.println("Error");
+
+    else {
+      if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4)) {
+        print("Hourglass");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) >= 3 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) < 9) {
+        print("Pear");
+      } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)  >= 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))< 9) {
+        print("Inverted Triangle");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  <= 4 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) >= 3 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  >= 3) {
+        print("Spoon");
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100))  < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 9 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 10) {
+        print("Rectangle");
+      } else {
+        print("Error");
+      }
     }
     return " ";
   }

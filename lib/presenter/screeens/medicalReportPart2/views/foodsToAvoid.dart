@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
-import '../../collectUserData/components/greyTextScreenCollectUserData.dart';
+import '../../collectUserData_3/components/greyTextScreenCollectUserData.dart';
 
 
 class FoodsToAvoid extends StatefulWidget {

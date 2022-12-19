@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
 import '../../../components/buttonInsideApp.dart';
-import '../../collectUserDataPart2/viewCollectUserDataPart2.dart';
 import 'ageMedicalConditions.dart';
 import 'genderEthnicity.dart';
 import 'imageBodyType.dart';
 import 'package:provider/provider.dart';
 
 
-class CollectUserDataBody extends StatelessWidget {
-  const CollectUserDataBody({Key? key}) : super(key: key);
+class CollectUserDataBody_3 extends StatelessWidget {
+  const CollectUserDataBody_3({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class CollectUserDataBody extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ViewCollectUserDataPart2()),
+                          builder: (_) => const ViewCollectUserDataPart_1()),
                     );
                   },
                   controller: controller,)

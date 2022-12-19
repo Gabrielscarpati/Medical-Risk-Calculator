@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
-import '../../collectUserData/components/greyTextScreenCollectUserData.dart';
 
 
 class VideoExercises extends StatefulWidget {
