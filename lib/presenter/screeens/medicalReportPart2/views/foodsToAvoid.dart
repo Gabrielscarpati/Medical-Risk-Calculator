@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
+import '../../../../providers/collectUserDataProvider.dart';
 import '../../collectUserData_3/components/greyTextScreenCollectUserData.dart';
 
 
@@ -14,7 +15,7 @@ class FoodsToAvoid extends StatefulWidget {
 class _FoodsToAvoid extends State<FoodsToAvoid> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -46,7 +47,13 @@ class _FoodsToAvoid extends State<FoodsToAvoid> {
                                   maxWidth: screenWidth -24,
                                 ),
                                 child: Container(
-                                  child: const Text('You should get no more than 25% to 30% of your daily calories from fats. You should limit saturated fat to less than 10% of your daily calories Foods to avoid include but are not limited to: Sugar, pizza, bread, bagels, rice, white potatoes and corn\n', style: TextStyle(
+                                  child: //Text('You should get no more than 25% to 30% of your daily calories from fats. You should limit saturated fat to less than 10% of your daily calories Foods to avoid include but are not limited to: Sugar, pizza, bread, bagels, rice, white potatoes and corn\n',
+                                    Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                        : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                        : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                        : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                        : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape",
+                                      style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontStyle: FontStyle.italic,

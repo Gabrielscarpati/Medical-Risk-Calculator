@@ -29,7 +29,7 @@ class _ViewCollectUserData_3State extends State<ViewCollectUserData_3> {
         backgroundColor: Colors.white,
         body: Container(
           height: 910,
-              child: ViewMedicalReportPart1(),
+              child: CollectUserDataBody_3(),
 
       ),
     );

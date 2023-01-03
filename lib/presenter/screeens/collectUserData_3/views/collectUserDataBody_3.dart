@@ -3,6 +3,7 @@ import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewColle
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
 import '../../../components/buttonInsideApp.dart';
+import '../../medicalReportPart1/viewMedicalReportPart1.dart';
 import 'ageMedicalConditions.dart';
 import 'genderEthnicity.dart';
 import 'imageBodyType.dart';
@@ -70,7 +71,7 @@ class CollectUserDataBody_3 extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const ViewCollectUserDataPart_1()),
+                          builder: (_) =>  ViewMedicalReportPart1()),
                     );
                   },
                   controller: controller,)

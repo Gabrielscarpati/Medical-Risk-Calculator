@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
+import '../../../../providers/collectUserDataProvider.dart';
 import '../../collectUserData_3/components/greyTextScreenCollectUserData.dart';
 
 
@@ -14,8 +15,7 @@ class WhatToDoShape extends StatefulWidget {
 class _WhatToDoShape extends State<WhatToDoShape> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
-
+    CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -69,7 +69,7 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                               ),
                                               borderRadius: BorderRadius.all(Radius.circular(6)),
                                               image: DecorationImage(
-                                                  image: AssetImage('assets/background.jpeg'),
+                                                  image: AssetImage('assets/heartBeat.jpeg'),
                                                   fit: BoxFit.fill
                                               )
                                           ),
@@ -81,18 +81,24 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                             maxWidth: screenWidth*.7,
                                           ),
                                           child: Container(
-                                            //VER PQ TA DANDO ERRO . . .. . .
 
-                                            child: const Text('Exercise at least 30 minutes per day to lose weight, and you can combine abdominal strengthening exercises to tighten the muscle.\n', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontStyle: FontStyle.italic,
+                                            child: Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                                : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                                : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                                : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                                : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontStyle: FontStyle.italic,
+                                              ),
                                             ),
-                                            ),
+                                            //Text('Exercise at least 30 minutes per day to lose weight, and you can combine abdominal strengthening exercises to tighten the muscle.\n', style: TextStyle(
                                           )
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 20,),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -109,12 +115,13 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                               ),
                                               borderRadius: BorderRadius.all(Radius.circular(6)),
                                               image: DecorationImage(
-                                                  image: AssetImage('assets/background.jpeg'),
+                                                  image: AssetImage('assets/food.jpeg'),
                                                   fit: BoxFit.fill
                                               )
                                           ),
                                         ),
                                       ),
+
                                       ConstrainedBox(
                                           constraints: BoxConstraints(
                                             maxHeight: 300,
@@ -123,12 +130,19 @@ class _WhatToDoShape extends State<WhatToDoShape> {
                                           child: Container(
                                             //VER PQ TA DANDO ERRO . . .. . .
 
-                                            child: const Text('Try to incorporate more fruits and vegetables, and less fatty protein, such as salmon in your diet.\n', style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16,
-                                              fontStyle: FontStyle.italic,
+                                            child: Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                                : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                                : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                                : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                                : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontStyle: FontStyle.italic,
+                                              ),
                                             ),
-                                            ),
+                                            //Text('Try to incorporate more fruits and vegetables, and less fatty protein, such as salmon in your diet.\n', style: TextStyle(
+
                                           )
                                       ),
                                     ],

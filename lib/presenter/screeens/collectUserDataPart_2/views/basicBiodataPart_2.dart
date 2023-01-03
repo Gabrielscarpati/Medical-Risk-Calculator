@@ -1,10 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:numberpicker/numberpicker.dart';
 import '../../../components/sliderBarWidget.dart';
 import 'package:provider/provider.dart';
-
 import '../../collectUserData_3/components/greenTextScreenCollectUserData.dart';
 import '../../collectUserData_3/components/greyTextScreenCollectUserData.dart';
 import '../../collectUserData_3/components/widgetsCollectUserData.dart';
@@ -51,8 +50,8 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                     animationDuration: Duration(milliseconds: 500),
                     width: 280,
                     value: true,
-                    textOn: "  Imperial system",textOnColor: Colors.white, textSize: 18,
-                    textOff: "  Metric system",
+                    textOn: "   Metric system",textOnColor: Colors.white, textSize: 18,
+                    textOff: "  Imperial system",
                     colorOn: Colors.green,
                     colorOff: Colors.orangeAccent,
                     iconOn: Icons.change_circle_rounded,
@@ -60,14 +59,24 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                     onTap: (){
                       _Provider.changeMesureSystem_2();
 
-                      if(_Provider.currentMesureSystem_2 ==0.0){
-                        _Provider.getHeightValue(heightValue: ((_Provider.currentValueHeight*3.28084)/100)~/1);
-                      }
-                      if(_Provider.currentMesureSystem_2 ==1.0){
-                        _Provider.getWeightValue(weightValue: _Provider.currentValueWeight~/2.204623);
-                      }
+                     if(_Provider.currentMesureSystem_2 ==0.0){
+                       //_Provider.getHeightValue(heightValue: ((_Provider.currentValueHeight*3.28084)/100)~/1);
+                       _Provider.currentValueHeight = 5;
+                       _Provider.currentValueHeightDecimal = 4;
+                       _Provider.getHeightValue(heightValue:  _Provider.currentValueHeight);
+                       _Provider.getHeightValueDecimal(heightValueDecimal: _Provider.currentValueHeightDecimal, );
 
-                     },
+                     }
+                     else {
+                       _Provider.currentValueHeight = 170;
+                       _Provider.currentValueHeightDecimal = 45;
+                       _Provider.getHeightValue(heightValue:  _Provider.currentValueHeight);
+                       _Provider.getHeightValueDecimal(heightValueDecimal: _Provider.currentValueHeightDecimal, );
+                     }
+
+                      _Provider.currentValueWeight = 80;
+
+                    },
                     onDoubleTap: (){},
                     onSwipe: (){print('');},
                     onChanged: (bool position){
@@ -77,6 +86,7 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
               ),
               SizedBox(height: heightBetweenWidgets-5,),
 
+              _Provider.currentMesureSystem_2 == 1? // == 1 -> meters
 
               Column(
                 children: [
@@ -96,22 +106,20 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                         children: [
 
 
-                          NumberPickerHeight( currentSliderValue: _Provider.currentValueHeight, currentSliderValueDecimal: _Provider.currentValueHeightDecimal,),
+                          NumberPickerHeightMetricSystem( currentSliderValue: _Provider.currentValueHeight, currentSliderValueDecimal: _Provider.currentValueHeightDecimal,),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          _Provider.currentMesureSystem_2 == 1
-                              ? ShowSliderValue(text: _Provider.currentValueHeight.toStringAsFixed(0)+ "." +_Provider.currentValueHeightDecimal.toStringAsFixed(0)+' Cm',)
-                          :ShowSliderValue(text: _Provider.currentValueHeight.toStringAsFixed(0)+ " Ft " +_Provider.currentValueHeightDecimal.toStringAsFixed(0)+' In',),
+                          ShowSliderValue(text: _Provider.currentValueHeight.toStringAsFixed(0)+ "." +_Provider.currentValueHeightDecimal.toStringAsFixed(0)+' Cm',),
 
                           SizedBox(height: 8),
                           Row(
                             children: [
                               SizedBox(width: 38),
-                              Text("Minimum value: 0"),
+                              Text("Minimum value: 120 Cm"),
                             ],
                           ),
                           SizedBox(height: 8,),
@@ -119,7 +127,56 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 100"),
+                              Text("Maximum value: 240 Cm "),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              )
+
+              :Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const GreenTextScreenCollectUserData(
+                        text: "Height",
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
+                        children: [
+
+
+                          NumberPickerHeightImperialSystem( currentSliderValue: _Provider.currentValueHeight, currentSliderValueDecimal: _Provider.currentValueHeightDecimal,),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          ShowSliderValue(text: _Provider.currentValueHeight.toStringAsFixed(0)+ " Ft " +_Provider.currentValueHeightDecimal.toStringAsFixed(0)+' In',),
+
+                          SizedBox(height: 8),
+                          Row(
+                            children: const [
+                              SizedBox(width: 38),
+                              Text("Minimum value: 4Ft"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: const [
+                              SizedBox(width: 38,),
+                              Text("Maximum value: 8Ft"),
                             ],
                           ),
                         ],
@@ -128,8 +185,14 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                   ),
                 ],
               ),
+
+
+
               SizedBox(height: heightBetweenWidgets-5,),
 
+              //50 to 500 Lb /  25 to 250 kg
+
+              _Provider.currentMesureSystem_2 == 1?
               Column(
                 children: [
                   Row(
@@ -147,7 +210,55 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                       Column(
                         children: [
 
-                          NumberPickerWeight( currentSliderValue: _Provider.currentValueWeight, currentSliderValueDecimal: _Provider.currentValueWeightDecimal,),
+                          NumberPickerWeightMetric( currentSliderValue: _Provider.currentValueWeight, currentSliderValueDecimal: _Provider.currentValueWeightDecimal,),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+
+                              ShowSliderValue(text: _Provider.currentValueWeight.toStringAsFixed(0) + "." +_Provider.currentValueWeightDecimal.toStringAsFixed(0)+' Lb',),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 25"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 250"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              )
+
+              :Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const GreenTextScreenCollectUserData(
+                        text: "Weight",
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
+                        children: [
+
+                          NumberPickerWeightimperial( currentSliderValue: _Provider.currentValueWeight, currentSliderValueDecimal: _Provider.currentValueWeightDecimal,),
                         ],
                       ),
                       Column(
@@ -162,7 +273,7 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 0"),
+                              Text("Minimum value: 50"),
                             ],
                           ),
                           SizedBox(height: 8,),
@@ -170,7 +281,7 @@ class _BasicBiodataPart_2 extends State<BasicBiodataPart_2> {
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 100"),
+                              Text("Minimum value: 500"),
                             ],
                           ),
                         ],

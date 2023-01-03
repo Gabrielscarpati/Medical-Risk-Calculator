@@ -32,8 +32,8 @@ class CollectUserDataProvider with ChangeNotifier {
   int currentValueWeight = 80;
   int currentValueWeightDecimal = 45;
 
-  int currentValueHeight = 80;
-  int currentValueHeightDecimal = 45;
+  int currentValueHeight = 120;
+  int currentValueHeightDecimal = 12;
 
   double BMI = 0;
 
@@ -161,56 +161,73 @@ class CollectUserDataProvider with ChangeNotifier {
 
 
   String getBodyType(){ // metric =1
-    // inches
-    if(currentMesureSystem_1 == 1.0) {
-      print(currentMesureSystem_1.toString()+"aaaaaaaa");
+
+    /*
+    print(currentMesureSystem_1.toString()+"aaaaaaaa");
 
       if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4 &&
           ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4)) {
-        print("Hourglass");
+        return "Hourglass";
       } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3 &&
           ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) / 2.54 < 9) {
-        print("Pear");
+        return "Pear";
       } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100) / 2.54 >= 3 &&
           ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9) {
-        print("Inverted Triangle");
+        return "Triangle";
+
       } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 <= 4 &&
           ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) / 2.54 >= 3 &&
           ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3) {
-        print("Spoon");
+        return "Apple";
       } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 < 3 &&
           ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)) / 2.54 < 3 &&
           ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9 &&
           ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 10) {
-        print("Rectangle");
+        return "Rectangle";
       } else {
         print("Error");
-      }
-    }
+      }*/
 
-    else {
-      if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4 &&
-          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4)) {
+      double currentValueChestTotal = currentValueChest+currentValueChestDecimal/100;
+      double currentValueWaistTotal = currentValueWaist+currentValueWaistDecimal/100;
+      double currentValueHipTotal = currentValueHip+currentValueHipDecimal/100;
+
+      if(currentMesureSystem_1 == 1.0) {
+        currentValueChestTotal = currentValueChestTotal/2.54;
+        currentValueWaistTotal = currentValueWaistTotal/2.54;
+        currentValueHipTotal = currentValueHipTotal/2.54;
+      }
+
+      if ((( currentValueChestTotal- currentValueWaistTotal)  >= 4 &&
+          (currentValueHipTotal - currentValueWaistTotal)  >= 4)) {
         print("Hourglass");
-      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) >= 3 &&
-          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) < 9) {
+        return "Hourglass";
+      } else if ((currentValueHipTotal - currentValueChestTotal) >= 3 &&
+          (currentValueHipTotal - currentValueWaistTotal) < 9) {
         print("Pear");
-      } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)  >= 3 &&
-          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))< 9) {
-        print("Inverted Triangle");
-      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  <= 4 &&
-          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) >= 3 &&
-          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  >= 3) {
+        return "Pear";
+      } else if (currentValueChestTotal - currentValueHipTotal  >= 3 &&
+          (currentValueChestTotal -currentValueWaistTotal)< 9) {
+        print("Triangle");
+        return "Triangle";
+      } else if ((currentValueHipTotal - currentValueChestTotal)  <= 4 &&
+          (currentValueWaistTotal - currentValueHipTotal) >= 3 &&
+          (currentValueWaistTotal - currentValueChestTotal)  >= 3) {
+
         print("Spoon");
-      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  < 3 &&
-          ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100))  < 3 &&
-          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 9 &&
-          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 10) {
+        return "Spoon";
+      } else if ((currentValueHipTotal -currentValueChestTotal)  < 3 &&
+          (currentValueChestTotal - currentValueHipTotal)  < 3 &&
+          (currentValueChestTotal - currentValueWaistTotal)  < 9 &&
+          (currentValueHipTotal - currentValueWaistTotal)  < 10) {
         print("Rectangle");
+        return "Rectangle";
+
       } else {
         print("Error");
       }
-    }
+
+
     return " ";
   }
 
@@ -243,3 +260,66 @@ class CollectUserDataProvider with ChangeNotifier {
 
 }
 
+
+
+/*  String getBodyType(){ // metric =1
+    // inches
+    if(currentMesureSystem_1 == 1.0) {
+      print(currentMesureSystem_1.toString()+"aaaaaaaa");
+
+      if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 >= 4)) {
+        return "Hourglass";
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) / 2.54 < 9) {
+        return "Pear";
+      } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100) / 2.54 >= 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9) {
+        return "Triangle";
+
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 <= 4 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) / 2.54 >= 3 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 >= 3) {
+        return "Apple";
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) / 2.54 < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)) / 2.54 < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 9 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100)) / 2.54 < 10) {
+        return "Rectangle";
+      } else {
+        print("Error");
+      }
+    }
+
+    else {
+      if ((((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  >= 4)) {
+        print("Hourglass");
+        return "Hourglass";
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100)) >= 3 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaist/100)) < 9) {
+        print("Pear");
+        return "Pear";
+      } else if ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100)  >= 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))< 9) {
+        print("Triangle");
+        return "Triangle";
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  <= 4 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueHip+ currentValueHipDecimal/100)) >= 3 &&
+          ((currentValueWaist+currentValueWaistDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  >= 3) {
+
+        print("Spoon");
+        return "Spoon";
+      } else if (((currentValueHip+currentValueHipDecimal/100) - (currentValueChest+currentValueChestDecimal/100))  < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueHip+currentValueHipDecimal/100))  < 3 &&
+          ((currentValueChest+currentValueChestDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 9 &&
+          ((currentValueHip+currentValueHipDecimal/100) - (currentValueWaist+currentValueWaistDecimal/100))  < 10) {
+        print("Rectangle");
+        return "Rectangle";
+
+      } else {
+        print("Error");
+      }
+    }
+    return " ";
+  }*/

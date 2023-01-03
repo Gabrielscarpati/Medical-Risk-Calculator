@@ -60,20 +60,20 @@ class  _SliderContainerAgeState  extends State<SliderContainerAge> {
 
 
 
-class NumberPickerChest extends StatefulWidget {
+class NumberPickerChestMetricSystem extends StatefulWidget {
   int currentSliderValue;
   int currentSliderValueDecimal;
-  NumberPickerChest({
+  NumberPickerChestMetricSystem({
     Key? key,
     required this.currentSliderValue,
     required this.currentSliderValueDecimal,
   }) : super(key: key);
 
   @override
-  _NumberPickerChestState createState() => _NumberPickerChestState();
+  _NumberPickerChestMetricSystemState createState() => _NumberPickerChestMetricSystemState();
 }
 
-class _NumberPickerChestState extends State<NumberPickerChest> {
+class _NumberPickerChestMetricSystemState extends State<NumberPickerChestMetricSystem> {
   @override
 
   Widget build(BuildContext context) {
@@ -108,8 +108,106 @@ class _NumberPickerChestState extends State<NumberPickerChest> {
                     ),
                     itemCount: 3,
                     value: _Provider.currentValueChest,
+                    minValue: 50,
+                    maxValue: 250,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getChestValue(chestValue: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: spacebetween,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueChestDecimal,
                     minValue: 0,
-                    maxValue: 500,
+                    maxValue: 99,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getChestValueDecimal(chestValueDecimal: value,);
+                      }
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class NumberPickerChestImperialSystem extends StatefulWidget {
+  int currentSliderValue;
+  int currentSliderValueDecimal;
+  NumberPickerChestImperialSystem({
+    Key? key,
+    required this.currentSliderValue,
+    required this.currentSliderValueDecimal,
+  }) : super(key: key);
+
+  @override
+  _NumberPickerChestImperialSystemState createState() => _NumberPickerChestImperialSystemState();
+}
+
+class _NumberPickerChestImperialSystemState extends State<NumberPickerChestImperialSystem> {
+  @override
+
+  Widget build(BuildContext context) {
+    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+
+    double spacebetween = 24;
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+           // PositionedContainer(spacebetween: spacebetween,),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueChest,
+                    minValue: 20,
+                    maxValue: 100,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getChestValue(chestValue: value);
@@ -159,20 +257,20 @@ class _NumberPickerChestState extends State<NumberPickerChest> {
 }
 
 
-class NumberPickerWaist extends StatefulWidget {
+class NumberPickerWaistMetricSystem extends StatefulWidget {
   int currentSliderValue;
   int currentSliderValueDecimal;
-  NumberPickerWaist({
+  NumberPickerWaistMetricSystem({
     Key? key,
     required this.currentSliderValue,
     required this.currentSliderValueDecimal,
   }) : super(key: key);
 
   @override
-  _NumberPickerWaistState createState() => _NumberPickerWaistState();
+  _NumberPickerWaistMetricSystemState createState() => _NumberPickerWaistMetricSystemState();
 }
 
-class _NumberPickerWaistState extends State<NumberPickerWaist> {
+class _NumberPickerWaistMetricSystemState extends State<NumberPickerWaistMetricSystem> {
   @override
 
   Widget build(BuildContext context) {
@@ -207,8 +305,106 @@ class _NumberPickerWaistState extends State<NumberPickerWaist> {
                     ),
                     itemCount: 3,
                     value: _Provider.currentValueWaist,
+                    minValue: 50,
+                    maxValue: 250,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getWaistValue(waistValue: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: spacebetween,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueWaistDecimal,
                     minValue: 0,
-                    maxValue: 500,
+                    maxValue: 99,
+                    onChanged: (value) {
+                        setState(() {
+                          _Provider.getWaistValueDecimal(waistValueDecimal: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class NumberPickerWaistImperialSystem extends StatefulWidget {
+  int currentSliderValue;
+  int currentSliderValueDecimal;
+  NumberPickerWaistImperialSystem({
+    Key? key,
+    required this.currentSliderValue,
+    required this.currentSliderValueDecimal,
+  }) : super(key: key);
+
+  @override
+  _NumberPickerWaistImperialSystemState createState() => _NumberPickerWaistImperialSystemState();
+}
+
+class _NumberPickerWaistImperialSystemState extends State<NumberPickerWaistImperialSystem> {
+  @override
+
+  Widget build(BuildContext context) {
+    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+
+    double spacebetween = 24;
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            //PositionedContainer(spacebetween: spacebetween,),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueWaist,
+                    minValue: 20,
+                    maxValue: 100,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getWaistValue(waistValue: value);
@@ -259,20 +455,20 @@ class _NumberPickerWaistState extends State<NumberPickerWaist> {
 
 
 
-class NumberPickerHip extends StatefulWidget {
+class NumberPickerHipMetricSystem extends StatefulWidget {
   int currentSliderValue;
   int currentSliderValueDecimal;
-  NumberPickerHip({
+  NumberPickerHipMetricSystem({
     Key? key,
     required this.currentSliderValue,
     required this.currentSliderValueDecimal,
   }) : super(key: key);
 
   @override
-  _NumberPickerHipState createState() => _NumberPickerHipState();
+  _NumberPickerHipMetricSystemState createState() => _NumberPickerHipMetricSystemState();
 }
 
-class _NumberPickerHipState extends State<NumberPickerHip> {
+class _NumberPickerHipMetricSystemState extends State<NumberPickerHipMetricSystem> {
   @override
 
   Widget build(BuildContext context) {
@@ -307,8 +503,106 @@ class _NumberPickerHipState extends State<NumberPickerHip> {
                     ),
                     itemCount: 3,
                     value: _Provider.currentValueHip,
+                    minValue: 50,
+                    maxValue: 250,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getHipValue(hipValue: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: spacebetween,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueHipDecimal,
                     minValue: 0,
-                    maxValue: 500,
+                    maxValue: 99,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getHipValueDecimal(hipValueDecimal: value,);
+                      }
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class NumberPickerHipImperialSystem extends StatefulWidget {
+  int currentSliderValue;
+  int currentSliderValueDecimal;
+  NumberPickerHipImperialSystem({
+    Key? key,
+    required this.currentSliderValue,
+    required this.currentSliderValueDecimal,
+  }) : super(key: key);
+
+  @override
+  _NumberPickerHipImperialSystemState createState() => _NumberPickerHipImperialSystemState();
+}
+
+class _NumberPickerHipImperialSystemState extends State<NumberPickerHipImperialSystem> {
+  @override
+
+  Widget build(BuildContext context) {
+    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+
+    double spacebetween = 24;
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            //PositionedContainer(spacebetween: spacebetween,),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueHip,
+                    minValue: 20,
+                    maxValue: 100,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHipValue(hipValue: value);
@@ -359,20 +653,20 @@ class _NumberPickerHipState extends State<NumberPickerHip> {
 
 
 
-class NumberPickerHeight extends StatefulWidget {
+class NumberPickerHeightMetricSystem extends StatefulWidget {
   int currentSliderValue;
   int currentSliderValueDecimal;
-  NumberPickerHeight({
+  NumberPickerHeightMetricSystem({
     Key? key,
     required this.currentSliderValue,
     required this.currentSliderValueDecimal,
   }) : super(key: key);
 
   @override
-  _NumberPickerHeightState createState() => _NumberPickerHeightState();
+  _NumberPickerHeightMetricSystemState createState() => _NumberPickerHeightMetricSystemState();
 }
 
-class _NumberPickerHeightState extends State<NumberPickerHeight> {
+class _NumberPickerHeightMetricSystemState extends State<NumberPickerHeightMetricSystem> {
   @override
 
   Widget build(BuildContext context) {
@@ -407,8 +701,8 @@ class _NumberPickerHeightState extends State<NumberPickerHeight> {
                     ),
                     itemCount: 3,
                     value: _Provider.currentValueHeight,
-                    minValue: 0,
-                    maxValue: 500,
+                    minValue: 120,
+                    maxValue: 240,
                     onChanged: (value) {
                       setState(() {
                         _Provider.getHeightValue(heightValue: value);
@@ -457,22 +751,120 @@ class _NumberPickerHeightState extends State<NumberPickerHeight> {
   }
 }
 
-
-
-class NumberPickerWeight extends StatefulWidget {
+class NumberPickerHeightImperialSystem extends StatefulWidget {
   int currentSliderValue;
   int currentSliderValueDecimal;
-  NumberPickerWeight({
+  NumberPickerHeightImperialSystem({
     Key? key,
     required this.currentSliderValue,
     required this.currentSliderValueDecimal,
   }) : super(key: key);
 
   @override
-  _NumberPickerWeightState createState() => _NumberPickerWeightState();
+  _NumberPickerHeightImperialSystemState createState() => _NumberPickerHeightImperialSystemState();
 }
 
-class _NumberPickerWeightState extends State<NumberPickerWeight> {
+class _NumberPickerHeightImperialSystemState extends State<NumberPickerHeightImperialSystem> {
+  @override
+
+  Widget build(BuildContext context) {
+    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+
+    double spacebetween = 24;
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            //PositionedContainer(spacebetween: spacebetween,),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueHeight,
+                    minValue: 4,
+                    maxValue: 7,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getHeightValue(heightValue: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: spacebetween,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueHeightDecimal,
+                    minValue: 0,
+                    maxValue: 12,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getHeightValueDecimal(heightValueDecimal: value,);
+                      }
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+
+
+class NumberPickerWeightMetric extends StatefulWidget {
+  int currentSliderValue;
+  int currentSliderValueDecimal;
+  NumberPickerWeightMetric({
+    Key? key,
+    required this.currentSliderValue,
+    required this.currentSliderValueDecimal,
+  }) : super(key: key);
+
+  @override
+  _NumberPickerWeightMetricState createState() => _NumberPickerWeightMetricState();
+}
+
+class _NumberPickerWeightMetricState extends State<NumberPickerWeightMetric> {
   @override
 
   Widget build(BuildContext context) {
@@ -507,7 +899,105 @@ class _NumberPickerWeightState extends State<NumberPickerWeight> {
                     ),
                     itemCount: 3,
                     value: _Provider.currentValueWeight,
+                    minValue: 25,
+                    maxValue: 250,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getWeightValue(weightValue: value);
+                        }
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: spacebetween,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueWeightDecimal,
                     minValue: 0,
+                    maxValue: 99,
+                    onChanged: (value) {
+                      setState(() {
+                        _Provider.getWeightValueDecimal(weightValueDecimal: value,);
+                      }
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class NumberPickerWeightimperial extends StatefulWidget {
+  int currentSliderValue;
+  int currentSliderValueDecimal;
+  NumberPickerWeightimperial({
+    Key? key,
+    required this.currentSliderValue,
+    required this.currentSliderValueDecimal,
+  }) : super(key: key);
+
+  @override
+  _NumberPickerWeightimperialState createState() => _NumberPickerWeightimperialState();
+}
+
+class _NumberPickerWeightimperialState extends State<NumberPickerWeightimperial> {
+  @override
+
+  Widget build(BuildContext context) {
+    CollectUserDataProvider _Provider = context.read<CollectUserDataProvider>();
+
+    double spacebetween = 24;
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            //PositionedContainer(spacebetween: spacebetween,),
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: NumberPicker(
+                    axis: Axis.vertical,
+                    itemHeight: 45,
+                    itemWidth: 45.0,
+                    step: 1,
+                    selectedTextStyle: const TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.green,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.0,
+                    ),
+                    itemCount: 3,
+                    value: _Provider.currentValueWeight,
+                    minValue: 50,
                     maxValue: 500,
                     onChanged: (value) {
                       setState(() {

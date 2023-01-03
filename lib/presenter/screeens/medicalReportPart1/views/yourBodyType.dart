@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
+import '../../../../providers/collectUserDataProvider.dart';
 import '../components/greyTextScreenCollectUserData.dart';
 
 
@@ -13,7 +14,7 @@ class YourBodyType extends StatefulWidget {
 class _AgeMedicalConditions extends State<YourBodyType> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
+    final CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -43,7 +44,13 @@ class _AgeMedicalConditions extends State<YourBodyType> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Apple Body Shape', style: TextStyle(
+                                  /**/
+                                  Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                    : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                    : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                    : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                    : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape",
+                                    style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
                                       fontStyle: FontStyle.italic,
@@ -53,12 +60,18 @@ class _AgeMedicalConditions extends State<YourBodyType> {
                                   ConstrainedBox(
                                       constraints: BoxConstraints(
                                         maxHeight: 300,
-                                        maxWidth: screenWidth*.5,
+                                        minWidth: screenWidth*.7,
+                                        maxWidth: screenWidth*.7,
                                       ),
                                       child: Container(
                                         //VER PQ TA DANDO ERRO . . .. . .
 
-                                        child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen\n', style: TextStyle(
+                                        child: Text( (_Provider.getBodyType() == "Apple")? "Apple"
+                                          : (_Provider.getBodyType() == "Hourglass")? "Hourglass"
+                                          : (_Provider.getBodyType() == "Triangle")?"Triangle"
+                                          : (_Provider.getBodyType() == "Pear")? "Pear"
+                                          : (_Provider.getBodyType() == "Rectangle")? "Rectangle": "Rectangle",
+                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 16,
                                           fontStyle: FontStyle.italic,
@@ -73,27 +86,10 @@ class _AgeMedicalConditions extends State<YourBodyType> {
                         ],
                       ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        height: screenHeight*0.05,
-                        width: screenWidth*.1,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 3,
-                              color: Colors.blueGrey,
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(6)),
-                            image: DecorationImage(
-                                image: AssetImage('assets/background.jpeg'),
-                                fit: BoxFit.fill
-                            )
-                        ),
-                      ),
-                    ),
+
                     Container(
-                      height: screenHeight*0.16,
-                      width: screenWidth*.32,
+                      height: screenHeight*0.12,
+                      width: screenWidth*.24,
                       decoration: BoxDecoration(
                           border: Border.all(
                             width: 3,
@@ -101,9 +97,14 @@ class _AgeMedicalConditions extends State<YourBodyType> {
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           image: DecorationImage(
-                              image: AssetImage('assets/background.jpeg'),
+                              image : (_Provider.getBodyType() == "Apple")? AssetImage('assets/Apple.jpeg')
+                                    : (_Provider.getBodyType() == "Hourglass")? AssetImage('assets/Hourglass.jpeg')
+                                    : (_Provider.getBodyType() == "Triangle")? AssetImage('assets/Triangle.jpeg')
+                                    : (_Provider.getBodyType() == "Pear")? AssetImage('assets/Pear.jpeg')
+                                    : (_Provider.getBodyType() == "Rectangle")? AssetImage('assets/Rectangle.jpeg'): AssetImage('assets/Rectangle.jpeg'),
+
                               fit: BoxFit.fill
-                          )
+                          ),
                       ),
                     )
                   ],

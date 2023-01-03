@@ -17,7 +17,7 @@ class WhyMightTheseRisksOccur extends StatefulWidget {
 class _WhyMightTheseRisksOccur extends State<WhyMightTheseRisksOccur> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<CollectUserDataProvider>();
+    final CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     RoundedLoadingButtonController controller = RoundedLoadingButtonController();
@@ -51,7 +51,11 @@ class _WhyMightTheseRisksOccur extends State<WhyMightTheseRisksOccur> {
                                 child: Container(
                                   //VER PQ TA DANDO ERRO . . .. . .
 
-                                  child: const Text('Apple Body Shape Apple Body Shape Apple Body Shape Apple Body Shapen\n', style: TextStyle(
+                                  child: Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                      : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                      : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                      : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                      : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape", style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontStyle: FontStyle.italic,
@@ -71,7 +75,7 @@ class _WhyMightTheseRisksOccur extends State<WhyMightTheseRisksOccur> {
               SizedBox(
                 height: screenHeight/24,
               ),
-              Text("Your BMI is: "+provider.BMI.toStringAsFixed(3),
+              Text("Your BMI is: "+_Provider.BMI.toStringAsFixed(3),
                 style: TextStyle(fontSize: 20),
 
               ),

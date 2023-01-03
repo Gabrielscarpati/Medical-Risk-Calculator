@@ -56,17 +56,25 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                     iconOn: Icons.change_circle_rounded,
                     iconOff: Icons.change_circle_rounded,
                     onTap: (){
-                      _Provider.currentValueWeight = 0;
                       _Provider.changeMesureSystem_1();
 
-                      if(_Provider.currentMesureSystem_1 ==0.0){
+                      _Provider.currentValueChest =80;
+                      _Provider.currentValueWaist =80;
+                      _Provider.currentValueHip =80;
+
+                      _Provider.getChestValue(chestValue: _Provider.currentValueChest);
+                      _Provider.getWaistValue(waistValue: _Provider.currentValueWaist);
+                      _Provider.getHipValue(hipValue: _Provider.currentValueHip);
+
+                      /*if(_Provider.currentMesureSystem_1 ==0.0){
                         _Provider.getChestValue(chestValue: _Provider.currentValueChest~/2.54);
                         _Provider.getWaistValue(waistValue: _Provider.currentValueWaist~/2.54);
                         _Provider.getHipValue(hipValue: _Provider.currentValueHip~/2.54);
-                        _Provider.getHeightValue(heightValue: _Provider.currentValueHeight~/2.54);
-                        _Provider.getWeightValue(weightValue: _Provider.currentValueWeight~/2.54);
-                      }
+                        //_Provider.getHeightValue(heightValue: _Provider.currentValueHeight~/2.54, heightValueDecimal: null);
+                        //_Provider.getWeightValue(weightValue: _Provider.currentValueWeight~/2.54);
+                      }*/
                      },
+
                     onDoubleTap: (){},
                     onSwipe: (){print('');},
                     onChanged: (bool position){
@@ -76,7 +84,7 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
               ),
               SizedBox(height: heightBetweenWidgets-5,),
 
-
+              _Provider.currentMesureSystem_1 == 1?
               Column(
                 children: [
                   Row(
@@ -85,7 +93,6 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                       const GreenTextScreenCollectUserData(
                         text: "Chest Circumference",
                       ),
-                      //Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
                     ],
                   ),
                   Row(
@@ -95,30 +102,79 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                       Column(
                         children: [
 
-                          NumberPickerChest( currentSliderValue: _Provider.currentValueChest, currentSliderValueDecimal: _Provider.currentValueChestDecimal,),
+                          NumberPickerChestMetricSystem( currentSliderValue: _Provider.currentValueChest, currentSliderValueDecimal: _Provider.currentValueChestDecimal,),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          _Provider.currentMesureSystem_1 == 1
-                              ? ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0)+ "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' Cm',)
-                          :ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0) + "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' In',),
+                         ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0)+ "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' Cm',),
 
                           SizedBox(height: 8),
                           Row(
                             children: [
                               SizedBox(width: 38),
-                              Text("Minimum value: 0"),
+                              Text("Minimum value: 50"),
                             ],
+                            //20 In to 100In    50 cm to 250cm
                           ),
                           SizedBox(height: 8,),
 
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 100"),
+
+                              Text("Maximum value: 250"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              )
+              : Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const GreenTextScreenCollectUserData(
+                        text: "Chest Circumference",
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
+                        children: [
+
+                          NumberPickerChestImperialSystem( currentSliderValue: _Provider.currentValueChest, currentSliderValueDecimal: _Provider.currentValueChestDecimal,),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          ShowSliderValue(text: _Provider.currentValueChest.toStringAsFixed(0) + "." +_Provider.currentValueChestDecimal.toStringAsFixed(0)+' In',),
+
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              SizedBox(width: 38),
+                              Text("Minimum value: ${ _Provider.currentMesureSystem_1 == 1? 50 : 20 }"),
+                            ],
+                            //20 In to 100In    50 cm to 250cm
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+
+                              Text("Maximum value: ${ _Provider.currentMesureSystem_1 == 1? 250 : 100 }"),
                             ],
                           ),
                         ],
@@ -129,7 +185,7 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
               ),
               SizedBox(height: heightBetweenWidgets-5,),
 
-
+              _Provider.currentMesureSystem_1 == 1?
               Column(
                 children: [
                   Row(
@@ -148,22 +204,19 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                       Column(
                         children: [
 
-                          NumberPickerWaist( currentSliderValue: _Provider.currentValueWaist, currentSliderValueDecimal: _Provider.currentValueWaistDecimal,),
+                          NumberPickerWaistMetricSystem( currentSliderValue: _Provider.currentValueWaist, currentSliderValueDecimal: _Provider.currentValueWaistDecimal,),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-
-                          _Provider.currentMesureSystem_1 == 1
-                              ? ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0)+ "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' Cm',)
-                              :ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0) + "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' In',),
+                         ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0)+ "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' Cm',),
                           SizedBox(height: 8,),
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 0"),
+                              Text("Minimum value: 50"),
                             ],
                           ),
                           SizedBox(height: 8,),
@@ -171,7 +224,54 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 100"),
+                              Text("Maximum value: 250"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              )
+              :Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const GreenTextScreenCollectUserData(
+                        text: "Waist Circumference",
+                      ),
+                      Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
+                        children: [
+
+                          NumberPickerWaistImperialSystem( currentSliderValue: _Provider.currentValueWaist, currentSliderValueDecimal: _Provider.currentValueWaistDecimal,),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+
+                          ShowSliderValue(text: _Provider.currentValueWaist.toStringAsFixed(0) + "." +_Provider.currentValueWaistDecimal.toStringAsFixed(0)+' In',),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 20 "),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Maximum value: 100 "),
                             ],
                           ),
                         ],
@@ -183,7 +283,7 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
 
               SizedBox(height: heightBetweenWidgets-5,),
 
-
+              _Provider.currentMesureSystem_1 == 1?
               Column(
                 children: [
                   Row(
@@ -202,22 +302,19 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                       Column(
                         children: [
 
-                          NumberPickerHip( currentSliderValue: _Provider.currentValueHip, currentSliderValueDecimal: _Provider.currentValueHipDecimal),
+                          NumberPickerHipMetricSystem( currentSliderValue: _Provider.currentValueHip, currentSliderValueDecimal: _Provider.currentValueHipDecimal),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-
-                          _Provider.currentMesureSystem_1 == 1
-                              ? ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0)+ "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' Cm',)
-                              :ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0) + "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' In',),
+                          ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0) + "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' In',),
                           SizedBox(height: 8,),
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 0"),
+                              Text("Minimum value: 50"),
                             ],
                           ),
                           SizedBox(height: 8,),
@@ -225,7 +322,54 @@ class _BasicBiodataPart_1 extends State<BasicBiodataPart_1> {
                           Row(
                             children: [
                               SizedBox(width: 38,),
-                              Text("Minimum value: 100"),
+                              Text("Maximum value: 250"),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              )
+
+              :Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const GreenTextScreenCollectUserData(
+                        text: "Hip Circumference",
+                      ),
+                      Text(_Provider.currentMesureSystem_1 == 0.0? " (In)": " (Cm)" ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      Column(
+                        children: [
+
+                          NumberPickerHipImperialSystem( currentSliderValue: _Provider.currentValueHip, currentSliderValueDecimal: _Provider.currentValueHipDecimal),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ShowSliderValue(text: _Provider.currentValueHip.toStringAsFixed(0) + "." +_Provider.currentValueHipDecimal.toStringAsFixed(0)+' In',),
+                          SizedBox(height: 8,),
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Minimum value: 20"),
+                            ],
+                          ),
+                          SizedBox(height: 8,),
+
+                          Row(
+                            children: [
+                              SizedBox(width: 38,),
+                              Text("Maximum value: 100 "),
                             ],
                           ),
                         ],

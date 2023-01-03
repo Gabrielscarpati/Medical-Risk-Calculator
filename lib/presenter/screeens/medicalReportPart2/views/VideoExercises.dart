@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
+import '../../../../providers/collectUserDataProvider.dart';
+
 
 
 class VideoExercises extends StatefulWidget {
@@ -13,7 +15,7 @@ class VideoExercises extends StatefulWidget {
 class _VideoExercises extends State<VideoExercises> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
+     CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
    double screenHeight = MediaQuery.of(context).size.height;
 

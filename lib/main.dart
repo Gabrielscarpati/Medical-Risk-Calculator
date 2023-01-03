@@ -7,6 +7,8 @@ import 'package:health_status/presenter/screeens/SignUp/views/SignUpScreen.dart'
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/views/basicBiodataPart_1.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_2/viewCollectUserDataPart_2.dart';
+import 'package:health_status/presenter/screeens/collectUserData_3/viewCollectUserData_3.dart';
+import 'package:health_status/presenter/screeens/collectUserData_3/views/collectUserDataBody_3.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart1/viewMedicalReportPart1.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';

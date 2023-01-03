@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
+import '../../../../providers/collectUserDataProvider.dart';
 import '../components/greyTextScreenCollectUserData.dart';
 
 
@@ -13,7 +14,7 @@ class HeathRisks extends StatefulWidget {
 class _HeathRisks extends State<HeathRisks> {
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<LogInSignUpProvider>();
+    final CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -46,7 +47,12 @@ class _HeathRisks extends State<HeathRisks> {
                                 child: Container(
                                   //VER PQ TA DANDO ERRO . . .. . .
 
-                                  child: const Text('Exercise at least 30 minutes per day to lose weight, and you can combine abdominal strengthening exercises to tighten the muscle.\n', style: TextStyle(
+                                  child: Text((_Provider.getBodyType() == "Apple")? "Apple Body Shape"
+                                      : (_Provider.getBodyType() == "Hourglass")? "Hourglass Body Shape"
+                                      : (_Provider.getBodyType() == "Triangle")?"Triangle Body Shape"
+                                      : (_Provider.getBodyType() == "Pear")? "Pear Body Shape"
+                                      : (_Provider.getBodyType() == "Rectangle")? "Rectangle Body Shape": "Rectangle Body Shape",
+                                    style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
                                     fontStyle: FontStyle.italic,

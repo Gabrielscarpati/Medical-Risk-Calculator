@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
 import '../../collectUserDataPart_2/viewCollectUserDataPart_2.dart';
-import '../../collectUserData_3/viewCollectUserData_3.dart';
-import '../viewCollectUserDataPart_1.dart';
 import 'basicBiodataPart_1.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +13,7 @@ class CollectUserDataBodyPart_1 extends StatelessWidget {
     final CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
 
     RoundedLoadingButtonController _controller = RoundedLoadingButtonController();
+
     return Container(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -48,11 +47,11 @@ class CollectUserDataBodyPart_1 extends StatelessWidget {
                 BasicBiodataPart_1(),
                 ElevatedButton(onPressed: (){
                   _Provider.calculateBMI();
-                  /*Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (_) =>  ViewCollectUserDataPart_2()),
-                  );*/
+                  );
                   _Provider.getBodyType();
                     }, child: Text(
                   'here'
