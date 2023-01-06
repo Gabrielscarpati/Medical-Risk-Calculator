@@ -46,7 +46,7 @@ class CollectUserDataBodyPart_1 extends StatelessWidget {
                // Expanded(
                 BasicBiodataPart_1(),
                 ElevatedButton(onPressed: (){
-                  _Provider.calculateBMI();
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(

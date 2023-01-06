@@ -126,11 +126,22 @@ class CollectUserDataProvider with ChangeNotifier {
   }
 
   void calculateBMI(){
-    double height = currentValueHeight+(currentValueHeightDecimal/100)/100;
-    if (height == 0.0) height = 1;
-    BMI = currentValueWeight/height * height;
+    double height = 1;
+    double weight = 1;
+    if (currentMesureSystem_2 == 0){
+       weight = currentValueWeight+(currentValueWeightDecimal/100);
+       height = (currentValueHeight*30.48)+(currentValueHeightDecimal*2.54);
+       height = height/100;
+       weight = weight*0.4535924;
+
+    }else{
+       height =( currentValueHeight+(currentValueHeightDecimal/100))/100; // meters
+       weight = currentValueWeight+(currentValueWeightDecimal/100);
+    }
+
+    BMI = weight/(height*height) ;
+    print("BMI= ${BMI}");
     notifyListeners();
-    //return currentSliderValueWeight/height * height;
   }
 
   void updateListGender({required String? gender}){
@@ -214,8 +225,8 @@ class CollectUserDataProvider with ChangeNotifier {
           (currentValueWaistTotal - currentValueHipTotal) >= 3 &&
           (currentValueWaistTotal - currentValueChestTotal)  >= 3) {
 
-        print("Spoon");
-        return "Spoon";
+        print("Apple");
+        return "Apple";
       } else if ((currentValueHipTotal -currentValueChestTotal)  < 3 &&
           (currentValueChestTotal - currentValueHipTotal)  < 3 &&
           (currentValueChestTotal - currentValueWaistTotal)  < 9 &&

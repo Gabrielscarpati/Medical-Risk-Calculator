@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:health_status/presenter/screeens/LogIn/viewLogIn.dart';
@@ -6,24 +7,29 @@ import 'package:health_status/presenter/screeens/SignUp/viewSignUp.dart';
 import 'package:health_status/presenter/screeens/SignUp/views/SignUpScreen.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/views/basicBiodataPart_1.dart';
+import 'package:health_status/presenter/screeens/collectUserDataPart_1/views/collectUserDataBodyPart_1.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_2/viewCollectUserDataPart_2.dart';
 import 'package:health_status/presenter/screeens/collectUserData_3/viewCollectUserData_3.dart';
 import 'package:health_status/presenter/screeens/collectUserData_3/views/collectUserDataBody_3.dart';
 import 'package:health_status/presenter/screeens/medicalReportPart1/viewMedicalReportPart1.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:health_status/providers/collectUserDataProvider.dart';
-import 'package:health_status/providers/provider.dart';
+import 'package:health_status/providers/providerFireBase.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
 
 void main() async {
+
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  //FirebaseAuth.instance.signOut();
 
 
 
   runApp(  MultiProvider(
     providers: [
-      ChangeNotifierProvider( create: (context) => ProviderBase() ,),
+      ChangeNotifierProvider( create: (context) => ProviderFireBase() ,),
       ChangeNotifierProvider( create: (context) => LogInSignUpProvider() ,),
       ChangeNotifierProvider( create: (context) => CollectUserDataProvider() ,),
     ],
@@ -56,13 +62,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
-      body: ViewCollectUserDataPart_1(),
+      body: //SignUpScreen(),
+      StreamBuilder(
+          stream: firebaseAuth.authStateChanges(),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ViewCollectUserDataPart_1();
+            }else{
+            }
+            return SignUpScreen();
+          }),
     );
   }
 }

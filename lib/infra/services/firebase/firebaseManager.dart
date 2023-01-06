@@ -12,10 +12,12 @@ class FirebaseManager{
     return firebaseAuth.currentUser!.uid;
   }
 
-  Future<User?> registerUser (String email, String password) async {
+  Future<User?> registerUser ({required String email, required String password}) async {
+    print(email);
+    print(password);
     try {
       UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-      await loginUser(email, password);
+      await loginUser(email: email, password: password);
       return userCredential.user;
     } on FirebaseAuthException catch(e){
       print(e);
@@ -25,7 +27,7 @@ class FirebaseManager{
     }
   }
 
-  Future<User?> loginUser (String email, String password) async {
+  Future<User?> loginUser ({required String email, required String password}) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,

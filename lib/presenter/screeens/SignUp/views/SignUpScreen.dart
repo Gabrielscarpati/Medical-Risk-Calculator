@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:health_status/presenter/screeens/LogIn/views/LogInScreen.dart';
+import 'package:health_status/presenter/screeens/SignUp/views/popUpTermsAndConditions.dart';
+import 'package:health_status/presenter/screeens/SignUp/views/termsAndConditions.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:health_status/providers/logInSignUpProvider.dart';
 import 'package:linkfive_purchases_provider/linkfive_purchases_provider.dart';
@@ -6,7 +9,6 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../domain/Models/bodyType.dart';
 import '../../../../infra/services/firebase/firebaseManager.dart';
 import '../../../../infra/services/getInformationByBodyType.dart';
-import '../../../components/loadingButton.dart';
 import '../../LogIn/viewLogIn.dart';
 import 'widgetsForSignUp.dart';
 
@@ -48,11 +50,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 30,),
-              NameController(
-                nameController: provider.nameController,
-                hint: 'Name',
-                iconData: Icons.person,
-              ),
 
               SizedBox(height: heightBetweenFields ,),
               EmailController(
@@ -75,22 +72,81 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 confirmPasswordController: provider.signUpPageConfirmPasswordController,
               ),
               SizedBox(height: heightBetweenFields*3 ,),
-              ElevatedButton(onPressed:() async{
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
-                BodyType info = await GetInformationByBodyType().betInformationByBodyType();
-                print(info.whatToDoExercise);
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0, left: 14.0),
+                    child: CheckboxListTile(
+                      activeColor: Colors.green[800],
 
-               /* FirebaseManager().registerUser(
-                    provider.signUpPageEmailController.text.trim(),
-                    provider.signUpPagePasswordController.text.trim());*/
+                      value: provider.isChecked,
+                      onChanged: (bool? newValue) {
+                        provider.updateIsCheck();
+                        setState(() {
+                          provider.isChecked = provider.isChecked;
+                        });
+                      },
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const ViewCollectUserDataPart_1()),
-                );
-                contrrr.reset();
-              },
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: const [
+                                  Text(
+                                    'I have read and agree with',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 14),
+                                  ),
+                                  Text(
+                                    'Terms and conditions',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.indigoAccent,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                viewTermsAndConditions(context);
+                              }
+                          ),
+                        ],
+                      ),
+
+                      checkColor: Colors.indigo,
+                    ),
+                  ),
+                ],
+              ),
+
+              ElevatedButton(
+                  onPressed:() async{
+
+                  final form = provider.formKeyAuthenticationSignUp.currentState!;
+                  print(provider.isChecked);
+                  if(provider.isChecked == false) {
+                    acceptTermsAndConditions();
+                  }
+                  else if (form.validate() && provider.signUpPageConfirmPasswordController.text == provider.signUpPagePasswordController.text){
+                    FirebaseManager().registerUser(
+
+                        email: provider.signUpPageEmailController.text.trim(),
+                        password:  provider.signUpPagePasswordController.text.trim(),
+                    );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ViewCollectUserDataPart_1()),
+                    );
+                    contrrr.reset();
+                  }
+                },
+
                 child: Text("here")),
 
              /* LoadingButton(
@@ -108,6 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         builder: (_) => const ViewCollectUserData()),
                   );
                   contrrr.reset();
+                  contrrr.reset();
                 },
                 controller: contrrr,
 
@@ -115,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               const Expanded(child: SizedBox()),
               Container(
-                //color: Colors.green,
+
                 height: 80,
                 width: scrennWidth*0.8,
                 decoration:  BoxDecoration(
@@ -146,13 +203,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   onTap: () {
-
-                    Navigator.pushAndRemoveUntil(
-                        context,
+                    Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (_) => const ViewLogIn()),
-                            (route) => false
-                    );
+                          builder: (context) {
+                            return LogInScreen();
+                          },
+                        ));
                   },
                 ),
               ),
@@ -162,4 +218,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+  Future viewTermsAndConditions(context) => showDialog(
+    context: context,
+    builder: (context) => const ViewTermsAndConditions(),
+  );
+
+  Future acceptTermsAndConditions() => showDialog(
+    context: context,
+    builder: (context) => PopUpTermsAndConditions(),
+  );
 }

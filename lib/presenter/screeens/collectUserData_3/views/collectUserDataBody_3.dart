@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_status/presenter/screeens/collectUserDataPart_1/viewCollectUserDataPart_1.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import '../../../../providers/collectUserDataProvider.dart';
+import '../../../../providers/providerFireBase.dart';
 import '../../../components/buttonInsideApp.dart';
 import '../../medicalReportPart1/viewMedicalReportPart1.dart';
 import 'ageMedicalConditions.dart';
@@ -16,8 +17,9 @@ class CollectUserDataBody_3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectUserDataProvider _Provider = context.watch<CollectUserDataProvider>();
-
+    final ProviderFireBase _FirebaseProvider = context.watch<ProviderFireBase>();
     RoundedLoadingButtonController controller = RoundedLoadingButtonController();
+
     return Container(
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -65,7 +67,26 @@ class CollectUserDataBody_3 extends StatelessWidget {
                 Divider(height: 2, color: Colors.grey, thickness: 2,),
                 ImageBodyType(),
                 SizedBox(height: 8,),
-                ButtonInsideApp(
+                ElevatedButton(
+                  onPressed: () async{
+                    await _FirebaseProvider.saveDataFirebase();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) =>  ViewMedicalReportPart1()),
+                    );
+
+                  },
+                  child: Text("Here"),
+
+                )
+        ],
+      ),
+    );
+  }
+}
+
+/*ButtonInsideApp(
                   buttonText: 'Continue',
                   goNextScreen: () {
                     Navigator.push(
@@ -74,9 +95,4 @@ class CollectUserDataBody_3 extends StatelessWidget {
                           builder: (_) =>  ViewMedicalReportPart1()),
                     );
                   },
-                  controller: controller,)
-        ],
-      ),
-    );
-  }
-}
+                  controller: controller,)*/

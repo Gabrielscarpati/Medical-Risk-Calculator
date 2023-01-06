@@ -14,9 +14,18 @@ class LogInSignUpProvider with ChangeNotifier {
 
   LogInSignUpProvider._internal();
 
+
+  bool isChecked = false;
+
+  void updateIsCheck(){
+    print(isChecked);
+    isChecked = !isChecked;
+  }
+
+
   final nameController = TextEditingController();
-  final formKeyAuthenticationLogin = GlobalKey<FormState>();
-  final formKeyAuthenticationSignUp = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyAuthenticationLogin = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKeyAuthenticationSignUp = GlobalKey<FormState>();
   final signUpPageEmailController = TextEditingController();
   final signUpPagePasswordController = TextEditingController();
   final signUpPageConfirmPasswordController = TextEditingController();
@@ -25,7 +34,7 @@ class LogInSignUpProvider with ChangeNotifier {
   final RoundedLoadingButtonController btnController = RoundedLoadingButtonController();
 
 
-  Future<void> singUpUser(BuildContext context) async{
+  /*Future<void> singUpUser(BuildContext context) async{
 
     if(formKeyAuthenticationSignUp.currentState!.validate()){
       print('ooooooo');
@@ -34,7 +43,7 @@ class LogInSignUpProvider with ChangeNotifier {
       //resp;
     }
     btnController.reset();
-  }
+  }*/
 
 
 
